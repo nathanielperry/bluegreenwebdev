@@ -34,27 +34,32 @@ const projects = [
   },
 ];
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="BlueGreenWebDev" />
-    <Splash />
-    <DarkSection
-      slug="skills"
-      subheader="I use modern tools...">
-      <SkillsList/>
-    </DarkSection>
-    <Section
-      slug="projects"
-      subheader="...to make modern web apps.">
-      <ProjectsList 
-        projects={projects}/>
-    </Section>
-    <DarkSection
-      slug="contact"
-      subheader="Reach out below, and let's have a chat!">
-      <ContactForm />
-    </DarkSection>
-  </Layout>
-)
+const IndexPage = () => {
+  //Stage of the splash animation.
+  const [ stage, setStage ] = React.useState('start');
+
+  return (
+    <Layout>
+      <SEO title="BlueGreenWebDev" />
+      <Splash />
+      <DarkSection
+        slug="skills"
+        subheader="I use modern tools...">
+        <SkillsList/>
+      </DarkSection>
+      <Section
+        slug="projects"
+        subheader="...to make modern web apps.">
+        <ProjectsList 
+          projects={projects}/>
+      </Section>
+      <DarkSection
+        slug="contact"
+        subheader="Reach out below, and let's have a chat!">
+        <ContactForm />
+      </DarkSection>
+    </Layout>
+  )
+};
 
 export default IndexPage

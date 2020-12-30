@@ -1,7 +1,7 @@
 const zindex = {
-    header: 'z-index: 3000',
-    overlay: 'z-index: 4000',
-    modal: 'z-index: 5000',
+    overlay: 4000,
+    modal: 5000,
+    header: 6000,
 }
 
 export default zindex;

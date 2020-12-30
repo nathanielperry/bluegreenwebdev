@@ -5,19 +5,26 @@ import styled from 'styled-components';
 import colors from '../styles/colors';
 import zindex from '../styles/zindex';
 
-import Logo from "./logo"
+import BlueGreenCircle from './circle';
+
+const HomeLink = styled(Link)`
+  z-index: ${zindex.overlay + 100};
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 0 ${colors.light};
+`;
 
 const Navbar = styled.nav`
   position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${zindex.header};
+  z-index: ${zindex.header};
 
   width: 100%;
   height: 4rem;
   padding: 0 4rem;
-  background: ${colors.light};
+  background: ${colors.lightgray};
   border-bottom: 2px solid ${colors.dark};
 
   a {
@@ -50,8 +57,10 @@ const Navbar = styled.nav`
 const Header = ({ siteTitle }) => (
   <header>
       <Navbar>
-        <Logo 
-          siteTitle={siteTitle}/>
+        <BlueGreenCircle />
+        <HomeLink to="/">
+            {siteTitle}
+        </HomeLink>
         <ul>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>

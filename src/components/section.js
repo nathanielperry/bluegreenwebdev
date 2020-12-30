@@ -8,7 +8,7 @@ const Container = styled.section`
     color: ${colors.dark};
     padding-top: 6rem;
     border-top: 2px solid ${colors.light};
-    `;
+`;
 
 const Inner = styled.div`
     max-width: 800px;
