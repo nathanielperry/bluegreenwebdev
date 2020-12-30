@@ -1,12 +1,24 @@
 import React from "react";
-import ContactForm from "../components/contactform";
+import styled from 'styled-components';
+import colors from '../styles/colors';
 
+import ContactForm from "../components/contactform";
 import Layout from "../components/layout";
 import ProjectsList from "../components/projectslist";
 import Section from "../components/section";
 import SEO from "../components/seo";
 import SkillsList from "../components/skillslist";
 import Splash from '../components/splash';
+
+
+const DarkSection = styled(Section)`
+  background-color: ${colors.dark};
+  color: ${colors.light};
+
+  .subheader {
+    text-align: right;
+  }
+`;
 
 //TODO: Move to GraphQL query
 const projects = [
@@ -20,7 +32,7 @@ const projects = [
     description: 'Project 2 description',
     url: '#',
   },
-]
+];
 
 const IndexPage = () => (
   <Layout>
@@ -31,12 +43,12 @@ const IndexPage = () => (
       subheader="I use modern tools...">
       <SkillsList/>
     </Section>
-    <Section
+    <DarkSection
       slug="projects"
       subheader="...to make modern web apps.">
       <ProjectsList 
         projects={projects}/>
-    </Section>
+    </DarkSection>
     <Section
       slug="contact"
       subheader="Reach out below, and let's have a chat!">

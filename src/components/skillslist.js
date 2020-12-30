@@ -1,22 +1,44 @@
 import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
+import SkillIcon from './skillicon';
 
-export default function SkillsList({ skills }) {
+const List = styled.ul`
+    width: 16rem;
+    list-style: none;
+    columns: 3;
+
+    li {
+        width: 4rem;
+        height: 4rem;
+    }
+`;
+
+export default function SkillsList() {
+    const data = useStaticQuery(graphql`
+        query IconsQuery {
+            allFile(filter: { sourceInstanceName: { eq: "icons" } }) {
+                edges {
+                    node {
+                        name
+                        publicURL
+                    }
+                }
+            }
+        }
+    `)
+
+    //Format data into list of skills objects
+    const skills = data.allFile.edges.map(edge => ({
+        name: edge.node.name,
+        publicURL: edge.node.publicURL,
+    }));
+
     return (
-        <ul>
-            <li>Javascript</li>
-            <li>HTML 5</li>
-            <li>CSS 3</li>
-            <li>Node</li>
-            <li>React</li>
-            <li>Gatsby</li>
-            <li>Vue</li>
-            <li>npm</li>
-            <li>Windows 10</li>
-            <li>Ubuntu</li>
-            <li>Mongodb</li>
-            <li>GraphQL</li>
-            <li>Wordpress</li>
-        </ul>
+        <List>
+            {skills.map(skill => (
+                <li><SkillIcon skill={skill} /></li>
+            ))}
+        </List>
     )
 }

@@ -13,10 +13,20 @@ const Navbar = styled.nav`
   align-items: center;
 
   width: 100%;
-  height: 5rem;
+  height: 4rem;
   padding: 0 4rem;
+  background: ${colors.light};
+  border-bottom: 2px solid ${colors.dark};
 
-  background-color: ${colors.gray};
+  /* background-color: ${colors.gray}; */
+  a {
+    text-decoration: none;
+    color: ${colors.dark};
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      text-shadow: 0 0 1px ${colors.dark};
+    }
+  }
 
   ul {
     display: flex;
@@ -32,6 +42,7 @@ const Navbar = styled.nav`
       margin: 0;
       padding: 0;
     }
+
   }
 `;
 

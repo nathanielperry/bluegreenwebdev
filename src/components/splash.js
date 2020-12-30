@@ -4,7 +4,22 @@ import colors from '../styles/colors';
 
 const Section = styled.section`
     height: 100vh;
-    background-color: ${colors.dark};
+    background: linear-gradient(45deg, ${colors.green}, ${colors.blue});
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    p {
+        width: 80%;
+        
+        font-family: 'Fredericka the Great', cursive;
+        font-size: 3rem;
+        line-height: 3rem;
+
+        color: ${colors.light};
+        text-shadow: 2px 2px 2px ${colors.dark};
+    }
 `;
 
 const introMessage = [

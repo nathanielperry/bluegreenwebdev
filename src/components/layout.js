@@ -22,6 +22,7 @@ const Footer = styled.footer`
   padding: 2rem;
 
   background-color: ${colors.dark};
+  color: ${colors.gray};
 `;
 
 const Layout = ({ children }) => {
