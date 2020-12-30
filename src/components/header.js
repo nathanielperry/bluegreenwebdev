@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import styled from 'styled-components';
 import colors from '../styles/colors';
+import zindex from '../styles/zindex';
 
 import Logo from "./logo"
 
@@ -11,6 +12,7 @@ const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  ${zindex.header};
 
   width: 100%;
   height: 4rem;
@@ -18,7 +20,6 @@ const Navbar = styled.nav`
   background: ${colors.light};
   border-bottom: 2px solid ${colors.dark};
 
-  /* background-color: ${colors.gray}; */
   a {
     text-decoration: none;
     color: ${colors.dark};

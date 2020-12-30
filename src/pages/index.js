@@ -12,11 +12,11 @@ import Splash from '../components/splash';
 
 
 const DarkSection = styled(Section)`
-  background-color: ${colors.dark};
+  background: linear-gradient(${colors.gray}, ${colors.dark});
   color: ${colors.light};
 
-  .subheader {
-    text-align: right;
+  h2 {
+    text-align: left;
   }
 `;
 
@@ -38,22 +38,22 @@ const IndexPage = () => (
   <Layout>
     <SEO title="BlueGreenWebDev" />
     <Splash />
-    <Section
+    <DarkSection
       slug="skills"
       subheader="I use modern tools...">
       <SkillsList/>
-    </Section>
-    <DarkSection
+    </DarkSection>
+    <Section
       slug="projects"
       subheader="...to make modern web apps.">
       <ProjectsList 
         projects={projects}/>
-    </DarkSection>
-    <Section
+    </Section>
+    <DarkSection
       slug="contact"
       subheader="Reach out below, and let's have a chat!">
       <ContactForm />
-    </Section>
+    </DarkSection>
   </Layout>
 )
 

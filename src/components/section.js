@@ -12,6 +12,7 @@ const Subheader = styled.h2`
     font-size: 2.3rem;
     line-height: 2.3rem;
     padding: 2rem;
+    text-align: right;
 `;
 
 export default function Section({ slug, subheader, className, children }) {
