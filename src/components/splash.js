@@ -4,6 +4,7 @@ import colors from '../styles/colors';
 import zindex from '../styles/zindex'; 
 
 import BlueGreenCircle from './circle';
+import Dots from './dots';
 
 const Section = styled.section`
     height: 100vh;
@@ -38,7 +39,7 @@ export default function Splash() {
     return (
         <Section>
             <BlueGreenCircle/>
-            <p>{introMessage.join(' ')}</p>
+            <p>{introMessage.slice(0, 1).join(' ')}<Dots/></p>
         </Section>
     )
 }
