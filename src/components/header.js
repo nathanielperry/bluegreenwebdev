@@ -57,7 +57,7 @@ const Navbar = styled.nav`
 const Header = ({ siteTitle }) => (
   <header>
       <Navbar>
-        <BlueGreenCircle />
+        {/* <BlueGreenCircle size={35} border={2} distance={0} spin={0}/> */}
         <HomeLink to="/">
             {siteTitle}
         </HomeLink>

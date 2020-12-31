@@ -38,7 +38,7 @@ const introMessage = [
 export default function Splash() {
     return (
         <Section>
-            <BlueGreenCircle/>
+            <BlueGreenCircle size={150} border={3} distance={120} spin={10}/>
             <p>{introMessage.slice(0, 1).join(' ')}<Dots/></p>
         </Section>
     )
