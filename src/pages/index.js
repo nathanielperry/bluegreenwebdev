@@ -2,14 +2,21 @@ import React from "react";
 import styled from 'styled-components';
 import colors from '../styles/colors';
 
-import ContactForm from "../components/contactform";
-import Layout from "../components/layout";
-import ProjectsList from "../components/projectslist";
-import Section from "../components/section";
 import SEO from "../components/seo";
-import SkillsList from "../components/skillslist";
-import Splash from '../components/splash';
+import Layout from "../components/layout";
+import Section from "../components/section";
 
+import Splash from '../components/splash';
+import SkillsList from "../components/skillslist";
+import ProjectsList from "../components/projectslist";
+import ContactForm from "../components/contactform";
+import SocialMedia from '../components/social';
+
+const Subheader = styled.h2`
+    font-size: 2.3rem;
+    line-height: 2.3rem;
+    text-align: right;
+`;
 
 const DarkSection = styled(Section)`
   background: linear-gradient(${colors.gray}, ${colors.dark});
@@ -18,6 +25,12 @@ const DarkSection = styled(Section)`
   h2 {
     text-align: left;
   }
+`;
+
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
 `;
 
 //TODO: Move to GraphQL query
@@ -42,21 +55,20 @@ const IndexPage = () => {
     <Layout>
       <SEO title="BlueGreenWebDev" />
       <Splash />
-      <DarkSection
-        slug="skills"
-        subheader="I use modern tools...">
+      <DarkSection slug="skills">
+        <Subheader>I use modern tools...</Subheader>
         <SkillsList/>
       </DarkSection>
-      <Section
-        slug="projects"
-        subheader="...to make modern web apps.">
-        <ProjectsList 
-          projects={projects}/>
+      <Section slug="projects">
+        <Subheader>...to make modern web apps.</Subheader>
+        <ProjectsList projects={projects}/>
       </Section>
-      <DarkSection
-        slug="contact"
-        subheader="Reach out below, and let's have a chat!">
-        <ContactForm />
+      <DarkSection slug="contact">
+        <Subheader style={{ textAlign: 'center' }}>I would love to hear from you!</Subheader>
+        <Flex>
+          <ContactForm />
+          <SocialMedia />
+        </Flex>
       </DarkSection>
     </Layout>
   )

@@ -16,20 +16,12 @@ const Inner = styled.div`
     margin: auto;
 `;
 
-const Subheader = styled.h2`
-    font-size: 2.3rem;
-    line-height: 2.3rem;
-    /* padding: 2rem; */
-    text-align: right;
-`;
-
 export default function Section({ slug, subheader, className, children }) {
     return (
         <Container
             className={className} 
             id={slug}>
             <Inner>
-                { subheader && (<Subheader className="subheader">{subheader}</Subheader>)}
                 { children }
             </Inner>
         </Container>

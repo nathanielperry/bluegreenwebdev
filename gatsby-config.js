@@ -20,6 +20,13 @@ module.exports = {
         path: `${__dirname}/src/static/icons`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `social`,
+        path: `${__dirname}/src/static/social`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
