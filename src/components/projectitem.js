@@ -19,6 +19,10 @@ const ProjectLi = styled.li`
         a {
             float: left;
         }
+
+        img {
+            margin-left: 0;
+        }
     }
 
     article {
