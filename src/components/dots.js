@@ -1,10 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import colors from '../styles/colors';
+import zindex from '../styles/zindex'; 
 
 const Container = styled.span`
-    display: inline-block;
+    display: inline;
     margin-left: 1.5rem;
+    
+    width: 80%;
+    
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 3rem;
+    line-height: 3rem;
+
+    color: ${colors.light};
+    text-shadow: 2px 2px 2px ${colors.dark};
 `;
 
 const Dot = styled(motion.span)`

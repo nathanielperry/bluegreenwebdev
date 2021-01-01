@@ -9,13 +9,13 @@ import getRotate from '../lib/getRotate';
 const Wrapper = styled(motion.div)`
     position: absolute;
     transform: rotate(-45deg);
-    z-index: ${zindex.overlay};
     display: flex;
     justify-content: center;
     align-items: center;
-`;
+    `;
 const Circle = styled(motion.div)`
     position: absolute;
+    z-index: ${zindex.overlay};
     width: ${props => props.size}px;
     height: ${props => props.size}px;
     border-radius: 100%;
@@ -24,21 +24,23 @@ const Circle = styled(motion.div)`
 `;
 const BlueCircle = styled(Circle)`
     border-color: ${colors.blue};
+    transform: translateX(${props => props.distance}px);
 `;
 const GreenCircle = styled(Circle)`
     border-color: ${colors.green};
     overflow: hidden;
+    transform: translateX(-${props => props.distance}px);
 `;
 const InnerCircle = styled(Circle)`
     top: -3px;
     left: -3px;
     background: linear-gradient(45deg, ${colors.green}, ${colors.blue});
+    transform: translateX(${props => props.distance * 2}px);
     border: none;
 `;
 
 export default function BlueGreenCircle(props) {
-    const { size, border, distance, spin, } = props;
-    const [ prevSpin, setPrevSpin ] = React.useState(spin);
+    const { size, border, distance, distanceSpeed, spinSpeed, } = props;
     const wrapperRef = React.useRef();
 
     const blueControls = useAnimation();
@@ -89,7 +91,6 @@ export default function BlueGreenCircle(props) {
                 duration: 0,
             }
         );
-        setPrevSpin(duration);
         return await wrapperControls.start(
             {
                 rotate: 360,
@@ -102,15 +103,13 @@ export default function BlueGreenCircle(props) {
         );
     }
 
-    const changeSpeed = (rate) => {
-        rotate.set(rate);
-    }
+    React.useEffect(() => {
+        changeDistance(distance, distanceSpeed);
+    }, [ distance ]);
 
     React.useEffect(() => {
-        changeDistance(distance, 0.2);
-        setSpin(spin);
-        // setInterval(() => console.log(getRotate(wrapperRef.current)), 10);
-    }, [ distance, spin ]);
+        setSpin(spinSpeed);
+    }, [ spinSpeed ]);
     
     return (
         <Wrapper
@@ -121,16 +120,19 @@ export default function BlueGreenCircle(props) {
             <BlueCircle 
                 size={size}
                 border={border}
+                initial={{ x: distance + '%' }}
                 animate={blueControls}
             />
             <GreenCircle
                 size={size}
                 border={border}
+                initial={{ x: '-' + distance + '%' }}
                 animate={greenControls}
             >
                 <InnerCircle 
                     size={size}
                     border={border}
+                    initial={{ x: (distance * 2) + '%' }}
                     animate={innerControls}
                 />
             </GreenCircle>

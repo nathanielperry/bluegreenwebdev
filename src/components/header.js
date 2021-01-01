@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import colors from '../styles/colors';
 import zindex from '../styles/zindex';
 
@@ -14,7 +15,7 @@ const HomeLink = styled(Link)`
   text-shadow: 2px 2px 0 ${colors.light};
 `;
 
-const Navbar = styled.nav`
+const Navbar = styled(motion.nav)`
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -22,8 +23,8 @@ const Navbar = styled.nav`
   z-index: ${zindex.header};
 
   width: 100%;
-  height: 4rem;
-  padding: 0 4rem;
+  height: 5rem;
+  padding: 1rem 4rem 0;
   background: ${colors.lightgray};
   border-bottom: 2px solid ${colors.dark};
 
@@ -54,10 +55,24 @@ const Navbar = styled.nav`
   }
 `;
 
-const Header = ({ siteTitle }) => (
-  <header>
-      <Navbar>
-        {/* <BlueGreenCircle size={35} border={2} distance={0} spin={0}/> */}
+const navVariants = {
+  hidden: {
+    y: '-5rem',
+  },
+  shown: {
+    y: '-1rem',
+  },
+}
+
+const Header = ({ siteTitle, isNavBarHidden }) => {
+  return (
+    <header>
+      <Navbar
+        initial={{ y: '-100%' }}
+        animate={ isNavBarHidden ? "hidden" : "shown"}
+        variants={navVariants}
+      >
+        <BlueGreenCircle size={35} border={2} distance={25} spinSpeed={0}/>
         <HomeLink to="/">
             {siteTitle}
         </HomeLink>
@@ -67,8 +82,9 @@ const Header = ({ siteTitle }) => (
           <li><a href="#contact">Contact</a></li>
         </ul>
       </Navbar>
-  </header>
-)
+    </header>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

@@ -1,9 +1,9 @@
 import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 import styled from 'styled-components';
 import colors from '../styles/colors';
 
 import SEO from "../components/seo";
-import Layout from "../components/layout";
 import Section from "../components/section";
 
 import Splash from '../components/splash';
@@ -11,6 +11,8 @@ import SkillsList from "../components/skillslist";
 import ProjectsList from "../components/projectslist";
 import ContactForm from "../components/contactform";
 import SocialMedia from '../components/social';
+import Header from "../components/header";
+import "../components/index.css";
 
 const Subheader = styled.h2`
     font-size: 2.3rem;
@@ -33,6 +35,17 @@ const Flex = styled.div`
   margin-top: 4rem;
 `;
 
+const Footer = styled.footer`
+  display: flex;
+  align-items: center;
+  
+  height: 5rem;
+  padding: 2rem;
+
+  background-color: ${colors.dark};
+  color: ${colors.gray};
+`;
+
 //TODO: Move to GraphQL query
 const projects = [
   {
@@ -48,29 +61,49 @@ const projects = [
 ];
 
 const IndexPage = () => {
-  //Stage of the splash animation.
-  const [ stage, setStage ] = React.useState('start');
+  const [ isNavBarHidden, setIsNavBarHidden ] = React.useState(true);
+  const toggleNavBar = () => setIsNavBarHidden(!isNavBarHidden);
+
+  const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
 
   return (
-    <Layout>
+    <>
       <SEO title="BlueGreenWebDev" />
-      <Splash />
-      <DarkSection slug="skills">
-        <Subheader>I use modern tools...</Subheader>
-        <SkillsList/>
-      </DarkSection>
-      <Section slug="projects">
-        <Subheader>...to make modern web apps.</Subheader>
-        <ProjectsList projects={projects}/>
-      </Section>
-      <DarkSection slug="contact">
-        <Subheader style={{ textAlign: 'center' }}>I would love to hear from you!</Subheader>
-        <Flex>
-          <ContactForm />
-          <SocialMedia />
-        </Flex>
-      </DarkSection>
-    </Layout>
+      <Header 
+        siteTitle={data.site.siteMetadata?.title || `Title`} 
+        isNavBarHidden={isNavBarHidden}
+      />
+      <main>
+        <Splash 
+          setIsNavBarHidden={setIsNavBarHidden}/>
+        <DarkSection slug="skills">
+          <Subheader>I use modern tools...</Subheader>
+          <SkillsList/>
+        </DarkSection>
+        <Section slug="projects">
+          <Subheader>...to make modern web apps.</Subheader>
+          <ProjectsList projects={projects}/>
+        </Section>
+        <DarkSection slug="contact">
+          <Subheader style={{ textAlign: 'center' }}>I would love to hear from you!</Subheader>
+          <Flex>
+            <ContactForm />
+            <SocialMedia />
+          </Flex>
+        </DarkSection>
+      </main>
+      <Footer>
+        © {new Date().getFullYear()} Nathaniel Perry
+      </Footer>
+    </>
   )
 };
 
