@@ -15,6 +15,10 @@ const ProjectLi = styled.li`
         article {
             flex-direction: row;
         }
+
+        a {
+            float: left;
+        }
     }
 
     article {
@@ -32,7 +36,7 @@ const ProjectLi = styled.li`
     }
 
     a {
-        display: inline-block;
+        display: block;
         text-decoration: none;
         padding: 0.2rem 0.8rem;
         border-radius: 12px;
@@ -40,6 +44,7 @@ const ProjectLi = styled.li`
         background: ${colors.green};
         text-shadow: 1px 1px 1px ${colors.dark};
         transition: all 0.1s ease-in-out;
+        float: right;
 
         &:hover {
             box-shadow: 2px 2px 2px black;
