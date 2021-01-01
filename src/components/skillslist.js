@@ -71,7 +71,7 @@ export default function SkillsList() {
                 }
             }
         }
-    `)
+    `);
 
     //Format data into list of skills objects
     const skills = data.allFile.edges.map(edge => ({

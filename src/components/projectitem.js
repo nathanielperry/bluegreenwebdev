@@ -52,14 +52,16 @@ const ProjectLi = styled.li`
 `;
 
 export default function ProjectItem({ project }) {
+    const { title, description, demoUrl, imageUrl } = project;
+
     return (
         <ProjectLi>
-            <h2>{ project.title }</h2>
+            <h2>{ title }</h2>
             <article>
-                <img src="https://source.unsplash.com/random/300x200" alt="project image" />
+                <img src={imageUrl} alt="project image" />
                 <content>
-                    <p>{ project.description }</p>
-                    <a href={ project.url }>Live Demo</a>
+                    <p>{ description }</p>
+                    <a href={ demoUrl }>Live Demo</a>
                 </content>
             </article>
         </ProjectLi>
