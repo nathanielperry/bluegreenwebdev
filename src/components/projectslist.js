@@ -16,7 +16,7 @@ export default function ProjectsList() {
     const data = useStaticQuery(graphql`
         query projectBriefs {
             allMarkdownRemark(
-                sort: { order:DESC, fields: [frontmatter___order]}
+                sort: { order:ASC, fields: [frontmatter___order]}
                 limit: 1000
             ) {
                 edges {
