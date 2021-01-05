@@ -90,7 +90,7 @@ const IndexPage = () => {
               <ProjectsList/>
             </Section>
             <DarkSection slug="contact">
-              <Subheader style={{ textAlign: 'center' }}>I would love to hear from you!</Subheader>
+              <Subheader style={{ textAlign: 'center' }}>Hav an interesting project? I would love to hear from you!</Subheader>
               <Flex>
                 <ContactForm />
                 <SocialMedia />
