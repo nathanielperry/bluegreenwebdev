@@ -8,6 +8,9 @@ import devices from '../styles/devices';
 import zindex from '../styles/zindex';
 
 import Logo from './bluegreenlogo';
+import MobileNavList from './mobilenavlist';
+import NavList from './navlist';
+import Hamburger from './hamburger';
 
 const HomeLink = styled(Link)`
   z-index: ${zindex.overlay + 100};
@@ -45,103 +48,11 @@ const Navbar = styled(motion.nav)`
       text-shadow: 0 0 1px ${colors.dark};
     }
   }
-
-  ul {
-    display: flex;
-    justify-content: space-between;
-    
-    width: 12rem;
-    margin: 0;
-    padding: 0;
-
-    list-style: none;
-
-    li {
-      margin: 0;
-      padding: 0;
-    }
-
-    @media {devices.mobileL} {
-      position: absolute;
-      right: 1rem;
-      margin-top: 4.5rem;
-      flex-direction: column;
-      width: auto; 
-      height: auto;
-      align-self: flex-start;
-      
-      
-      li {
-        margin-bottom: 0.5rem;
-        
-        a {
-          display: block;
-          text-align: center;
-          box-shadow: 2px 2px 1px ${colors.dark};
-          border-radius: 100%;
-          background: ${colors.light};
-          display: block;
-          width: 60px;
-          height: 60px;
-          line-height: 60px;
-        }
-      }
-    }
-  }
-`;
-
-const burgerContainer = 40;
-const burgerSize = 25;
-const burgerBorderSize = 5;
-const burgerAnimationDuration = 0.2;
-
-const Hamburger = styled.div`
-  box-sizing: border-box;
-  position: relative;
-  display: block;
-  width: ${burgerSize}px;
-  height: ${burgerSize}px;
-  margin: ${(burgerContainer-burgerSize)/2};
-  border: ${burgerBorderSize}px solid;
-  border-color: ${props => props.isHamburgerOpen ? colors.lightgray : colors.dark };
-  border-left: 0;
-  border-right: 0;
-
-  transition: all ${burgerAnimationDuration}s ease-in-out;  
-
-  &::before {
-    display: block;
-    position: absolute;
-    content: ' ';
-    width: ${burgerSize}px;
-    height: ${burgerBorderSize}px;
-    background: ${colors.dark};
-    top: ${burgerSize / 2 - burgerBorderSize / 2 - burgerBorderSize}px;
-    transform: ${props => props.isHamburgerOpen ? 'rotate(135deg)' : 'rotate(0)'};
-    transition: all ${burgerAnimationDuration}s ease-in-out;
-  }
-  
-  &::after {
-    display: block;
-    position: absolute;
-    content: ' ';
-    width: ${burgerSize}px;
-    height: ${burgerBorderSize}px;
-    background: ${colors.dark};
-    top: ${burgerSize / 2 - burgerBorderSize / 2 - burgerBorderSize}px;
-    transform: ${props => props.isHamburgerOpen ? 'rotate(-135deg)' : 'rotate(0)'};
-    transition: all ${burgerAnimationDuration}s ease-in-out;
-  }
 `;
 
 const navVariants = {
   hidden: { y: '-5rem', },
   shown: { y: '-1rem', },
-}
-
-const navListVariants = {
-  hidden: { opacity: 0, x: '100%' },
-  shown: { opacity: 1, x: '0%' },
 }
 
 const Header = ({ siteTitle, isNavBarHidden }) => {
@@ -155,32 +66,33 @@ const Header = ({ siteTitle, isNavBarHidden }) => {
         animate={ isNavBarHidden ? "hidden" : "shown"}
         variants={navVariants}
       >
+      <a href="#">
         <Logo 
           size={35}
           border={3}
           distance={25}
           rotation={-45}
         />
-        <HomeLink to="/">
-            {siteTitle}
-        </HomeLink>
-          { (isMobile) && <Hamburger 
+      </a>
+      { !isMobile &&
+        <>
+          <HomeLink to="/">
+              {siteTitle}
+          </HomeLink>
+          <NavList />
+        </>
+      }
+      { isMobile && 
+        <>
+          <Hamburger 
             isHamburgerOpen={isHamburgerOpen}
-            onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}/> 
-          }
-          { (!isMobile || isHamburgerOpen) &&
-            <motion.ul
-              initial="hidden"
-              animate={ isHamburgerOpen ? "shown" : "hidden" }
-              variants={navListVariants}
-              transition={{
-                staggerChildren: 0.15,
-              }}>
-              <motion.li variants={navListVariants}><a href="#skills">Skills</a></motion.li>
-              <motion.li variants={navListVariants}><a href="#projects">Projects</a></motion.li>
-              <motion.li variants={navListVariants}><a href="#contact">Contact</a></motion.li>
-            </motion.ul>
-          }
+            setIsHamburgerOpen={setIsHamburgerOpen}
+          />
+          <MobileNavList
+            isHamburgerOpen={isHamburgerOpen}
+          />
+        </>
+      }
       </Navbar>
     </header>
   )

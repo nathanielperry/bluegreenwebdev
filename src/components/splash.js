@@ -133,12 +133,12 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     }
 
     React.useEffect(() => {
-        // if (localStorage.getItem("bgwd_animation-complete") === "yes") {
-        //     sequenceQuick();
-        // } else {
-        //     sequence();
-        // }
-        testSequence();
+        if (localStorage.getItem("bgwd_animation-complete") === "yes") {
+            sequenceQuick();
+        } else {
+            sequence();
+        }
+        // testSequence();
     }, []);
 
     return (
