@@ -2,6 +2,7 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import colors from '../styles/colors';
+import devices from '../styles/devices';
 
 const Container = styled.div`
     display: flex;
@@ -10,6 +11,27 @@ const Container = styled.div`
 
     a {
         color: ${colors.light};
+    }
+
+    img {
+        width: 256px;
+        height: 256px;
+    }
+
+    @media ${devices.tablet} {
+        width: 110px;
+        margin: auto;
+        flex-direction: row;
+        justify-content: space-between;
+
+        p {
+            display: none;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
     }
 `;
 

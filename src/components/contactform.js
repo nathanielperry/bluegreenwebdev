@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from '../styles/colors';
+import devices from '../styles/devices';
 
 const Form = styled.form`
     width: 400px;
@@ -29,7 +30,12 @@ const Form = styled.form`
         text-align: right;
     }
 
-    `;
+    @media ${devices.tablet} {
+        width: 80%;
+        margin: auto;
+        padding-right: 4rem;
+    }
+`;
 
 const Submit = styled.button`
     margin: 0;

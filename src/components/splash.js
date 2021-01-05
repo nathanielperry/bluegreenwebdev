@@ -20,7 +20,6 @@ const Section = styled.section`
 
 const TextContainer = styled.div`
     height: 50vh;
-    width: 100%;
     z-index: ${zindex.overlay + 100};
     text-align: left;
 `;

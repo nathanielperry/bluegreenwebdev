@@ -2,6 +2,7 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import styled from 'styled-components';
 import colors from '../styles/colors';
+import devices from '../styles/devices';
 
 import SEO from "../components/seo";
 import Section from "../components/section";
@@ -39,6 +40,11 @@ const Flex = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 4rem;
+
+  @media ${devices.tablet} {
+    justify-content: space-around;
+    flex-direction: column;
+  }
 `;
 
 const Footer = styled.footer`

@@ -2,6 +2,7 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import colors from '../styles/colors';
+import devices from '../styles/devices';
 
 import SkillIcon from './skillicon';
 
@@ -22,6 +23,10 @@ const OuterContainer = styled.div`
     height: 800px;
     width: 800px;
     margin: auto;
+
+    @media ${devices.tablet} {
+        width: 750px; 
+    }
 `;
 
 const Container = styled.div`
@@ -42,6 +47,10 @@ const Container = styled.div`
     box-shadow: 4px 4px 0px ${colors.orange};
     
     background: linear-gradient(${colors.light}, ${colors.lightgray}); 
+
+    @media ${devices.tablet} {
+        width: 375px;
+    }
 `;
 const ContainerA = styled(Container)`
 

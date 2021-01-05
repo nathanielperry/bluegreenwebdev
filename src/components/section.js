@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from '../styles/colors';
+import devices from '../styles/devices';
 
 const Container = styled.section`
     min-height: 100vh;
@@ -12,8 +13,12 @@ const Container = styled.section`
 
 const Inner = styled.div`
     max-width: 800px;
-    min-width: 800px;
+    min-width: 100vw;
     margin: auto;
+
+    @media ${devices.tablet} {
+        padding: 0 20px;
+    }    
 `;
 
 export default function Section({ slug, subheader, className, children }) {
