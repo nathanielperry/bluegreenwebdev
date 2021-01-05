@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import colors from '../styles/colors';
+import devices from '../styles/devices';
 
 const Span = styled(motion.span)`
     display: inline-block;
@@ -12,6 +13,11 @@ const Span = styled(motion.span)`
 
     color: ${colors.light};
     text-shadow: 2px 2px 2px ${colors.dark};
+
+    @media ${devices.mobileL} {
+        font-size: 2rem;
+        line-height: 2rem;
+    }
 `;
 
 const initial = {

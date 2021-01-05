@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from '../styles/colors';
+import devices from '../styles/devices';
 import zindex from '../styles/zindex';
 
 import BlueGreenCircle from './circle';
@@ -27,6 +28,10 @@ const TextContainer = styled.div`
 const SplashTextLine = styled.p`
     width: 100%;
     padding: 0 6rem;
+
+    @media ${devices.mobileL} {
+        padding: 0 2rem;
+    }
 `;
 
 const Backdrop = styled.div`
@@ -119,19 +124,21 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     }
 
     const testSequence = async () => {
-        addSplashText('Hello,');
-        await timer(0.5);
-        addSplashText('my name is Nathaniel.');
-        await timer(0.5);
-        addSplashText('I am a full stack web developer with a passion for design.', true);
+        setIsNavBarHidden(false);
+        // addSplashText('Hello,');
+        // await timer(0.5);
+        // addSplashText('my name is Nathaniel.');
+        // await timer(0.5);
+        // addSplashText('I am a full stack web developer with a passion for design.', true);
     }
 
     React.useEffect(() => {
-        if (localStorage.getItem("bgwd_animation-complete") === "yes") {
-            sequenceQuick();
-        } else {
-            sequence();
-        }
+        // if (localStorage.getItem("bgwd_animation-complete") === "yes") {
+        //     sequenceQuick();
+        // } else {
+        //     sequence();
+        // }
+        testSequence();
     }, []);
 
     return (
