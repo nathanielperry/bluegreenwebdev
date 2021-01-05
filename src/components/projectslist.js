@@ -26,6 +26,7 @@ export default function ProjectsList() {
                             title
                             description
                             demoUrl
+                            githubUrl
                             slug
                         }
                     }
@@ -55,6 +56,7 @@ export default function ProjectsList() {
             title: node.frontmatter.title,
             description: node.frontmatter.description,
             demoUrl: node.frontmatter.demoUrl,
+            githubUrl: node.frontmatter.githubUrl,
             imageUrl,
         }
     });

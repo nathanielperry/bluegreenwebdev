@@ -18,6 +18,12 @@ const Subheader = styled.h2`
     font-size: 2.3rem;
     line-height: 2.3rem;
     text-align: right;
+    text-shadow: 1px 1px 1px ${colors.dark};
+`;
+
+const Highlight = styled.em`
+  font-style: normal;
+  color: ${colors.orange};
 `;
 
 const DarkSection = styled(Section)`
@@ -39,30 +45,18 @@ const Footer = styled.footer`
   display: flex;
   align-items: center;
   
+  margin-top: -5rem;
   height: 5rem;
   padding: 2rem;
 
-  background-color: ${colors.dark};
   color: ${colors.gray};
 `;
 
-//TODO: Move to GraphQL query
-const projects = [
-  {
-    title: 'Project 1',
-    description: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.',
-    url: '#',
-  },
-  {
-    title: 'Project 2',
-    description: 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.',
-    url: '#',
-  },
-];
-
 const IndexPage = () => {
   const [ isNavBarHidden, setIsNavBarHidden ] = React.useState(true);
-  const toggleNavBar = () => setIsNavBarHidden(!isNavBarHidden);
+  const [ isAnimationComplete, setIsAnimationComplete ] = React.useState(
+    localStorage.getItem("bgwd_animation-complete") === "yes" ? true : false
+  );
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -83,26 +77,31 @@ const IndexPage = () => {
       />
       <main>
         <Splash 
-          setIsNavBarHidden={setIsNavBarHidden}/>
-        <DarkSection slug="skills">
-          <Subheader>I use modern tools...</Subheader>
-          <SkillsList/>
-        </DarkSection>
-        <Section slug="projects">
-          <Subheader>...to make modern web apps.</Subheader>
-          <ProjectsList projects={projects}/>
-        </Section>
-        <DarkSection slug="contact">
-          <Subheader style={{ textAlign: 'center' }}>I would love to hear from you!</Subheader>
-          <Flex>
-            <ContactForm />
-            <SocialMedia />
-          </Flex>
-        </DarkSection>
-      </main>
-      <Footer>
-        © {new Date().getFullYear()} Nathaniel Perry
-      </Footer>
+          setIsNavBarHidden={setIsNavBarHidden}
+          setIsAnimationComplete={setIsAnimationComplete}/>
+        { isAnimationComplete && 
+          <>
+            <DarkSection slug="skills">
+              <Subheader>I use <Highlight>modern</Highlight> tools...</Subheader>
+              <SkillsList/>
+            </DarkSection>
+            <Section slug="projects">
+              <Subheader>...to make <Highlight>modern</Highlight> web apps.</Subheader>
+              <ProjectsList/>
+            </Section>
+            <DarkSection slug="contact">
+              <Subheader style={{ textAlign: 'center' }}>I would love to hear from you!</Subheader>
+              <Flex>
+                <ContactForm />
+                <SocialMedia />
+              </Flex>
+            </DarkSection>
+          </>
+        }
+        </main>
+        <Footer>
+          © {new Date().getFullYear()} Nathaniel Perry
+        </Footer>
     </>
   )
 };

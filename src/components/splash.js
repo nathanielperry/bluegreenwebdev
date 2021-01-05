@@ -44,7 +44,7 @@ const Backdrop = styled.div`
     }
 `;
 
-export default function Splash({ setIsNavBarHidden }) {
+export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     const [ isBackdropShown, setIsBackdropShown ] = React.useState(false);
     const [ isCircleShown, setIsCircleShown ] = React.useState(true);
     const [ isDotsShown, setIsDotsShown ] = React.useState(true);
@@ -84,11 +84,9 @@ export default function Splash({ setIsNavBarHidden }) {
     const sequence = async () => {
         await setDistanceAsync(50, 5.5);
         addSplashText('Hello,');
-        await setDistanceAsync(25, 3);
-        await setDistanceAsync(200, 0.5);
-        await setDistanceAsync(25, 5.5);
-        setSpinSpeed(0.5);
+        await setDistanceAsync(30, 2);
         addSplashText('my name is Nathaniel.');
+        await setSpinSpeed(0.5);
         await setDistanceAsync(200, 0.5);
         await setDistanceAsync(0, 5);
         addSplashText('I am a full stack web developer with a passion for design.', true);
@@ -97,10 +95,30 @@ export default function Splash({ setIsNavBarHidden }) {
         setIsDotsShown(false);
         await timer(1);
         setIsNavBarHidden(false);
+        setIsAnimationComplete(true);
+        localStorage.setItem("bgwd_animation-complete", "yes");
     };
 
+    const sequenceQuick = async () => {
+        setIsAnimationComplete(true);
+        setIsDotsShown(false);
+        setSpinSpeed(1);
+        setDistanceAsync(0, 1);
+        await timer(0.955);
+        setIsCircleShown(false);
+        setIsBackdropShown(true);
+        addSplashText('Hello,');
+        addSplashText('my name is Nathaniel.');
+        addSplashText('I am a full stack web developer with a passion for design.', true);
+        setIsNavBarHidden(false);
+    }
+
     React.useEffect(() => {
-        sequence();
+        if (localStorage.getItem("bgwd_animation-complete") === "yes") {
+            sequenceQuick();
+        } else {
+            sequence();
+        }
     }, []);
 
     return (

@@ -16,8 +16,8 @@ const ProjectLi = styled.li`
             flex-direction: row;
         }
 
-        a {
-            float: left;
+        div {
+            justify-content: flex-start;
         }
 
         img {
@@ -38,39 +38,54 @@ const ProjectLi = styled.li`
         border-radius: 16px;
         box-shadow: 2px 2px 1px ${colors.dark};
     }
+`;
 
-    a {
-        display: block;
-        text-decoration: none;
-        padding: 0.2rem 0.8rem;
-        border-radius: 12px;
-        color: ${colors.light};
-        background: ${colors.green};
-        text-shadow: 1px 1px 1px ${colors.dark};
-        transition: all 0.1s ease-in-out;
-        float: right;
+const Flex = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`;
 
-        &:hover {
-            box-shadow: 2px 2px 2px black;
-        }
+const Link = styled.a`
+    display: block;
+    text-decoration: none;
+    padding: 0.2rem 0.8rem;
+    border-radius: 12px;
+    color: ${colors.light};
+    text-shadow: 1px 1px 1px ${colors.dark};
+    transition: all 0.1s ease-in-out;
 
-        &:active {
-            box-shadow: none;
-        }
+    &:hover {
+        box-shadow: 2px 2px 2px black;
+    }
+
+    &:active {
+        box-shadow: none;
     }
 `;
 
+const DemoLink = styled(Link)`
+    background: ${colors.green};
+`;
+
+const GitHubLink = styled(Link)`
+    background: ${colors.blue};
+    margin-left: 0.5rem;
+`;
+
 export default function ProjectItem({ project }) {
-    const { title, description, demoUrl, imageUrl } = project;
+    const { title, description, demoUrl, githubUrl, imageUrl } = project;
 
     return (
         <ProjectLi>
             <h2>{ title }</h2>
             <article>
-                <img src={imageUrl} alt="project image" />
+                <img src={imageUrl} alt="project screenshot" />
                 <content>
                     <p>{ description }</p>
-                    <a href={ demoUrl }>Live Demo</a>
+                    <Flex>
+                        <DemoLink href={ demoUrl }>Live Demo</DemoLink>
+                        <GitHubLink href={ githubUrl }>View on GitHub</GitHubLink>
+                    </Flex>
                 </content>
             </article>
         </ProjectLi>
