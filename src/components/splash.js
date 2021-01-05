@@ -19,7 +19,7 @@ const Section = styled.section`
 `;
 
 const TextContainer = styled.div`
-    height: 70vh;
+    height: 50vh;
     width: 100%;
     z-index: ${zindex.overlay + 100};
     text-align: left;
@@ -128,12 +128,11 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     }
 
     React.useEffect(() => {
-        // if (localStorage.getItem("bgwd_animation-complete") === "yes") {
-        //     sequenceQuick();
-        // } else {
-        //     sequence();
-        // }
-        sequence();
+        if (localStorage.getItem("bgwd_animation-complete") === "yes") {
+            sequenceQuick();
+        } else {
+            sequence();
+        }
     }, []);
 
     return (
