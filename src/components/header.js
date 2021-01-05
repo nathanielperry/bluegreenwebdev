@@ -1,11 +1,11 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import colors from '../styles/colors';
 import devices from '../styles/devices';
 import zindex from '../styles/zindex';
+import { useMediaQuery } from 'react-responsive';
 
 import Logo from './bluegreenlogo';
 import MobileNavList from './mobilenavlist';
@@ -17,10 +17,6 @@ const HomeLink = styled(Link)`
   font-weight: bold;
   font-size: 1.2rem;
   text-shadow: 2px 2px 0 ${colors.light};
-
-  @media ${devices.mobileL} {
-    display: none;
-  }
 `;
 
 const Navbar = styled(motion.nav)`
@@ -55,9 +51,9 @@ const navVariants = {
   shown: { y: '-1rem', },
 }
 
-const Header = ({ siteTitle, isNavBarHidden }) => {
-  const [ isMobile, setIsMobile ] = React.useState(true);
+export default function Header({ siteTitle, isNavBarHidden }) {
   const [ isHamburgerOpen, setIsHamburgerOpen ] = React.useState(false);
+  const isMobile = useMediaQuery({ query: devices.mobileL });
 
   return (
     <header>
@@ -74,6 +70,9 @@ const Header = ({ siteTitle, isNavBarHidden }) => {
           rotation={-45}
         />
       </a>
+
+
+      {/* Desktop View */}
       { !isMobile &&
         <>
           <HomeLink to="/">
@@ -82,6 +81,8 @@ const Header = ({ siteTitle, isNavBarHidden }) => {
           <NavList />
         </>
       }
+
+      {/* Mobile View */}
       { isMobile && 
         <>
           <Hamburger 
@@ -93,17 +94,8 @@ const Header = ({ siteTitle, isNavBarHidden }) => {
           />
         </>
       }
+
       </Navbar>
     </header>
   )
 }
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
