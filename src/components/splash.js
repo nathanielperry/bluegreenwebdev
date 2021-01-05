@@ -18,9 +18,15 @@ const Section = styled.section`
     overflow: hidden;
 `;
 
-const SplashTextLine = styled.p`
+const TextContainer = styled.div`
+    height: 70vh;
     width: 100%;
     z-index: ${zindex.overlay + 100};
+    text-align: left;
+`;
+
+const SplashTextLine = styled.p`
+    width: 100%;
     padding: 0 6rem;
 `;
 
@@ -113,12 +119,21 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
         setIsNavBarHidden(false);
     }
 
+    const testSequence = async () => {
+        addSplashText('Hello,');
+        await timer(0.5);
+        addSplashText('my name is Nathaniel.');
+        await timer(0.5);
+        addSplashText('I am a full stack web developer with a passion for design.', true);
+    }
+
     React.useEffect(() => {
-        if (localStorage.getItem("bgwd_animation-complete") === "yes") {
-            sequenceQuick();
-        } else {
-            sequence();
-        }
+        // if (localStorage.getItem("bgwd_animation-complete") === "yes") {
+        //     sequenceQuick();
+        // } else {
+        //     sequence();
+        // }
+        sequence();
     }, []);
 
     return (
@@ -133,20 +148,24 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
                     spinSpeed={spinSpeed}
                 />
             }
+            <TextContainer>
                 {
                     splashTextList.map((line, i) => (
                         <SplashTextLine
-                            key={`line-${i}`}
+                        key={`line-${i}`}
                         >
                             { 
                                 line.map((text, j) => (
-                                    <SplashText key={`st-${i}-${j}`}>{text}</SplashText>
+                                    <>
+                                        <SplashText key={`st-${i}-${j}`}>{text}</SplashText>
+                                    </>
                                 ))
                             }
                             { isDotsShown && i === splashTextList.length -1 && <Dots/> }
                         </SplashTextLine>
                     ))
                 }
+            </TextContainer>
         </Section>
     )
 }

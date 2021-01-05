@@ -30,7 +30,9 @@ export default function SplashText({ children }) {
             initial={initial}
             animate={animate}
         >
-            {children}
+            {/* React ignores whitespace here so &nbsp is 
+            used here to ensure a space between spans.*/}
+            {children}&nbsp;
         </Span>
     )
 }
