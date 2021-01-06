@@ -13,7 +13,6 @@ const Container = styled.section`
 
 const Inner = styled.div`
     max-width: 800px;
-    min-width: 100vw;
     margin: auto;
 
     @media ${devices.tablet} {
