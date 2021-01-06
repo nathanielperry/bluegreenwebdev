@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from '../styles/colors';
+import devices from '../styles/devices';
 
 const ProjectLi = styled.li`
     position: relative;
@@ -9,6 +10,10 @@ const ProjectLi = styled.li`
     margin: 0 0 4rem 0;
     padding: 0;
     width: 90%;
+
+    @media ${devices.mobileL} {
+        align-self: center;
+    }
 
     &:nth-child(even) {
         align-self: flex-end;
@@ -23,12 +28,32 @@ const ProjectLi = styled.li`
         img {
             margin-left: 0;
         }
+
+        @media ${devices.mobileL} {
+            align-self: center;
+
+            article {
+                flex-direction: column;
+            }
+
+            div {
+               justify-content: center; 
+            }
+        }
     }
 
     article {
         display: flex;
         align-items: flex-start;
         flex-direction: row-reverse;
+
+        @media ${devices.mobileL} {
+            flex-direction: column;
+
+            p {
+                margin: 1rem 0;
+            }
+        }
     }
 
     img {
@@ -37,12 +62,20 @@ const ProjectLi = styled.li`
         float: left;
         border-radius: 16px;
         box-shadow: 2px 2px 1px ${colors.dark};
+
+        @media ${devices.mobileL} {
+            margin-left: 0;
+        }
     }
 `;
 
 const Flex = styled.div`
     display: flex;
     justify-content: flex-end;
+
+    @media ${devices.mobileL} {
+        justify-content: center;        
+    }
 `;
 
 const Link = styled.a`

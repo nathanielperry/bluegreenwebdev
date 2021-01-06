@@ -33,6 +33,11 @@ const Container = styled.div`
             height: 50px;
         }
     }
+
+    @media ${devices.mobileL} {
+        padding-top: 1rem;
+        padding-bottom: 4rem;        
+    }
 `;
 
 const Flex = styled.div`

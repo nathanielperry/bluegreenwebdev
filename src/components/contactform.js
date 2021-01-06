@@ -31,9 +31,27 @@ const Form = styled.form`
     }
 
     @media ${devices.tablet} {
-        width: 80%;
+        width: 100%;
         margin: auto;
         padding-right: 4rem;
+    }
+    
+    @media ${devices.mobileM} {
+        width: 100%;
+        padding: 0;
+        input, textarea {
+            margin: 0;
+        }
+        div {
+            flex-direction: column;
+            margin-bottom: 0.3rem;
+        }
+        label {
+            width: auto;
+            text-align: left;
+            padding: 0;
+            margin: 0;
+        }       
     }
 `;
 
@@ -48,6 +66,10 @@ const Submit = styled.button`
     color: ${colors.light};
 
     text-shadow: 1px 1px 0 ${colors.dark};
+
+    @media ${devices.mobileM} {
+        margin: 0;        
+    }
 `;
 
 export default function ContactForm() {

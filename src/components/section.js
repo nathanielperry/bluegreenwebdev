@@ -9,6 +9,10 @@ const Container = styled.section`
     color: ${colors.dark};
     padding-top: 6rem;
     border-top: 2px solid ${colors.light};
+
+    @media ${devices.mobileL} {
+        padding-top: 5rem;
+    }
 `;
 
 const Inner = styled.div`

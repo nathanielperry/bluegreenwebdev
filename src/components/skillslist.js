@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import colors from '../styles/colors';
 import devices from '../styles/devices';
+import { useMediaQuery } from 'react-responsive';
 
 import SkillIcon from './skillicon';
 
@@ -16,11 +17,15 @@ const List = styled.ul`
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 100px);
     gap: 1rem;
+
+    @media ${devices.mobileL} {
+        grid-template-rows: repeat(2, 70px);
+        gap: 0.5rem;
+    }
 `;
 
 const OuterContainer = styled.div`
     position: relative;
-    height: 800px;
     width: 800px;
     margin: auto;
 
@@ -51,18 +56,31 @@ const Container = styled.div`
     @media ${devices.tablet} {
         width: 375px;
     }
+
+    @media ${devices.mobileL} {
+        width: 200px;
+        height: 225px;
+        padding: 1rem 1rem 3rem;
+    }
 `;
+
+const offsetX = 85;
+const offsetY = 80;
+
 const ContainerA = styled(Container)`
 
 `;
 const ContainerB = styled(Container)`
-    transform: translate(85%, 80%);
+    transform: translate(${props => props.offsetX}%, ${props => props.offsetY}%);
     overflow: hidden;
+    @media ${devices.mobileL} {
+        padding: 3rem 1rem 1rem;
+    }
 `;
 const InnerContainer = styled(Container)`
     top: -3px;
     left: -2px;
-    transform: translate(-85%, -80%);
+    transform: translate(-${props => props.offsetX}%, -${props => props.offsetY}%);
     background: linear-gradient(.85turn, ${colors.orange}, 25%, ${colors.light});
     box-shadow: none;
     border-color: ${colors.dark};
@@ -88,17 +106,28 @@ export default function SkillsList() {
         publicURL: edge.node.publicURL,
     }));
 
+    const isMobile = useMediaQuery({ query: devices.mobileL });
+
     return (
         <OuterContainer>
-            <ContainerA>
+            <ContainerA
+                offsetX={isMobile ? 50 : 85}
+                offsetY={isMobile ? 80 : 80}
+            >
                 <List>
                     {skills.slice(0, 6).map(skill => (
                         <li><SkillIcon skill={skill} /></li>
                     ))}
                 </List>
             </ContainerA>
-            <ContainerB>
-                <InnerContainer />
+            <ContainerB
+                offsetX={isMobile ? 35 : 85}
+                offsetY={isMobile ? 80 : 80}
+            >
+                <InnerContainer 
+                    offsetX={isMobile ? 35 : 85}
+                    offsetY={isMobile ? 80 : 80}
+                />
                 <List>
                     {skills.slice(6, 12).map(skill => (
                         <li><SkillIcon skill={skill} /></li>

@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import styled from 'styled-components';
 import colors from '../styles/colors';
 import devices from '../styles/devices';
+import { useMediaQuery } from 'react-responsive';
 
 import SEO from "../components/seo";
 import Section from "../components/section";
@@ -17,9 +18,14 @@ import "../components/index.css";
 
 const Subheader = styled.h2`
     font-size: 2.3rem;
-    line-height: 2.3rem;
+    /* line-height: 2.3rem; */
     text-align: right;
     text-shadow: 1px 1px 1px ${colors.dark};
+    margin-bottom: 0.5rem;
+
+    @media ${devices.mobileL} {
+      font-size: 1.8rem;
+    }
 `;
 
 const Highlight = styled.em`
@@ -38,12 +44,15 @@ const DarkSection = styled(Section)`
 
 const Flex = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 4rem;
 
   @media ${devices.tablet} {
-    justify-content: space-around;
     flex-direction: column;
+  }
+
+  @media ${devices.mobileL} {
+    margin-top: 2rem;          
   }
 `;
 
@@ -74,6 +83,8 @@ const IndexPage = () => {
     }
   `)
 
+  const isMobile = useMediaQuery({ query: devices.mobileL });
+
   return (
     <>
       <SEO title="BlueGreenWebDev" />
@@ -96,7 +107,8 @@ const IndexPage = () => {
               <ProjectsList/>
             </Section>
             <DarkSection slug="contact">
-              <Subheader style={{ textAlign: 'center' }}>Have an interesting project? I would love to hear from you!</Subheader>
+              <Subheader style={{ textAlign: isMobile ? 'left' : 'center' }}>Have an interesting project?</Subheader>
+              <Subheader style={{ textAlign: isMobile ? 'left' : 'center' }}> I would love to hear from you!</Subheader>
               <Flex>
                 <ContactForm />
                 <SocialMedia />
