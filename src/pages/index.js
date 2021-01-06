@@ -18,7 +18,6 @@ import "../components/index.css";
 
 const Subheader = styled.h2`
     font-size: 2.3rem;
-    /* line-height: 2.3rem; */
     text-align: right;
     text-shadow: 1px 1px 1px ${colors.dark};
     margin-bottom: 0.5rem;

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import colors from '../styles/colors';
 import devices from '../styles/devices';
 import zindex from '../styles/zindex';
+import NavListItems from "./navlistitems";
 
 const navListVariants = {
     hidden: { opacity: 0, x: '100%' },
@@ -30,9 +31,7 @@ export default function MobileNavList({ isHamburgerOpen }) {
 
     return (
         <NavUl>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <NavListItems/>
         </NavUl>   
     )
 }

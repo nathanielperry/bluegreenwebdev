@@ -6,13 +6,14 @@ import colors from '../styles/colors';
 import devices from '../styles/devices';
 import zindex from '../styles/zindex';
 import { useMediaQuery } from 'react-responsive';
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 import Logo from './bluegreenlogo';
 import MobileNavList from './mobilenavlist';
 import NavList from './navlist';
 import Hamburger from './hamburger';
 
-const HomeLink = styled(Link)`
+const HomeLink = styled(ScrollLink)`
   z-index: ${zindex.overlay + 100};
   font-weight: bold;
   font-size: 1.2rem;
@@ -62,20 +63,28 @@ export default function Header({ siteTitle, isNavBarHidden }) {
         animate={ isNavBarHidden ? "hidden" : "shown"}
         variants={navVariants}
       >
-      <a href="#">
+      <ScrollLink 
+          to="splash"
+          duration={300}
+          smooth={true}
+      >
         <Logo 
           size={35}
           border={3}
           distance={25}
           rotation={-45}
         />
-      </a>
+      </ScrollLink>
 
 
       {/* Desktop View */}
       { !isMobile &&
         <>
-          <HomeLink to="/">
+          <HomeLink 
+            to="splash"
+            duration={300}
+            smooth={true}
+          >
               {siteTitle}
           </HomeLink>
           <NavList />

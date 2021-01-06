@@ -123,26 +123,16 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
         setIsNavBarHidden(false);
     }
 
-    const testSequence = async () => {
-        setIsNavBarHidden(false);
-        // addSplashText('Hello,');
-        // await timer(0.5);
-        // addSplashText('my name is Nathaniel.');
-        // await timer(0.5);
-        // addSplashText('I am a full stack web developer with a passion for design.', true);
-    }
-
     React.useEffect(() => {
         if (localStorage.getItem("bgwd_animation-complete") === "yes") {
             sequenceQuick();
         } else {
             sequence();
         }
-        // testSequence();
     }, []);
 
     return (
-        <Section>
+        <Section id="splash">
             { isBackdropShown && <Backdrop/> }
             { isCircleShown && 
                 <BlueGreenCircle
