@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import colors from '../styles/colors';
-import zindex from '../styles/zindex'; 
 
 const Container = styled.span`
     display: inline;

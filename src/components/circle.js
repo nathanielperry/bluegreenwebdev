@@ -105,10 +105,12 @@ export default function BlueGreenCircle(props) {
 
     React.useEffect(() => {
         changeDistance(distance, distanceSpeed);
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [ distance ]);
 
     React.useEffect(() => {
         setSpin(spinSpeed);
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [ spinSpeed ]);
     
     return (

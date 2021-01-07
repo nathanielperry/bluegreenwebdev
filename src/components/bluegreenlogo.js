@@ -56,6 +56,7 @@ export default function BlueGreenCircle(props) {
         animation.start({
             rotate: initialRotation + rotation + 'deg',
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [ rotation ]);
 
     return (

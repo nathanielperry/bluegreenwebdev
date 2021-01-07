@@ -1,8 +1,8 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import styled from 'styled-components';
 import colors from '../styles/colors';
 import devices from '../styles/devices';
+import { useStaticQuery, graphql } from "gatsby";
 import { useMediaQuery } from 'react-responsive';
 
 import SEO from "../components/seo";
@@ -84,9 +84,6 @@ const IndexPage = () => {
   `)
 
   const isMobile = useMediaQuery({ query: devices.mobileL });
-  const skillListIntersects = {
-
-  }
 
   return (
     <>

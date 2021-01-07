@@ -5,7 +5,6 @@ import devices from '../styles/devices';
 import zindex from '../styles/zindex';
 import { motion } from 'framer-motion';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Link as ScrollLink } from "react-scroll";
 
 import BlueGreenCircle from './circle';
 import Dots from './dots';
@@ -79,7 +78,6 @@ const Backdrop = styled.div`
 export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     const [ isBackdropShown, setIsBackdropShown ] = React.useState(false);
     const [ isCircleShown, setIsCircleShown ] = React.useState(true);
-    const [ isDotsShown, setIsDotsShown ] = React.useState(true);
 
     const initialDistance = 200;
     const initialDistanceSpeed = 5;
@@ -88,7 +86,6 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     const [ distanceSpeed, setDistanceSpeed ] = React.useState(initialDistanceSpeed);
     const [ spinSpeed, setSpinSpeed ] = React.useState(initialSpinSpeed);
 
-    const [ splashTextList, setSplashTextList ] = React.useState(new Array(1).fill([]));
     const [ splashCount, setSplashCount ] = React.useState(0);
 
     const data = useStaticQuery(graphql`
@@ -135,7 +132,6 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
         setSplashCount(3);
         setIsBackdropShown(true);
         setIsCircleShown(false);
-        setIsDotsShown(false);
         await timer(1);
         setIsNavBarHidden(false);
         setIsAnimationComplete(true);
@@ -144,7 +140,6 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
 
     const sequenceQuick = async () => {
         setIsAnimationComplete(true);
-        setIsDotsShown(false);
         setSpinSpeed(1);
         setDistanceAsync(0, 1);
         await timer(0.955);
@@ -162,7 +157,6 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
         setSpinSpeed(initialSpinSpeed);
         setIsNavBarHidden(true);
         setIsCircleShown(true);
-        setIsDotsShown(true);
         setIsAnimationComplete(false);
         sequence();
     }
@@ -173,6 +167,7 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
         } else {
             sequence();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, []);
 
     return (

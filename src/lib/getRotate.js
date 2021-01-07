@@ -14,7 +14,6 @@ export default function getRotate(el) {
     const a = values[0];
     const b = values[1];
 
-    const scale = Math.sqrt(a*a + b*b);
     // arc sin, convert from radians to degrees, round
     const angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
 

@@ -3,8 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import colors from '../styles/colors';
 import devices from '../styles/devices';
-import { motion, useAnimation } from 'framer-motion';
-import { useMediaQuery } from 'react-responsive';
+import { useAnimation } from 'framer-motion';
 
 import SkillIcon from './skillicon';
 
@@ -139,6 +138,7 @@ export default function SkillsList({ xIntersect, yIntersect }) {
 
     React.useEffect(() => {
         moveContainers(xIntersect, yIntersect, 200);
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [xIntersect, yIntersect])
 
     return (

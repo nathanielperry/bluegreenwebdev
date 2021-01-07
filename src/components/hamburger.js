@@ -1,9 +1,6 @@
 import React from "react"
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import colors from '../styles/colors';
-import devices from '../styles/devices';
-import zindex from '../styles/zindex';
 
 const burgerContainer = 40;
 const burgerSize = 25;
