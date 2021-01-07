@@ -18,7 +18,8 @@ const HomeLink = styled(ScrollLink)`
   z-index: ${zindex.overlay + 100};
   font-weight: bold;
   font-size: 1.2rem;
-  text-shadow: 2px 2px 0 ${colors.light};
+  text-shadow: 2px 2px 0 ${colors.dark};
+  color: ${colors.light};
 `;
 
 const Navbar = styled(motion.nav)`
@@ -31,8 +32,8 @@ const Navbar = styled(motion.nav)`
   width: 100%;
   height: 5rem;
   padding: 1rem 4rem 0;
-  background: ${colors.lightgray};
-  border-bottom: 2px solid ${colors.dark};
+  background: ${colors.dark};
+  border-bottom: 2px solid ${colors.light};
 
   @media ${devices.mobileL} {
     padding: 1rem 1rem 0;
@@ -40,10 +41,10 @@ const Navbar = styled(motion.nav)`
 
   a {
     text-decoration: none;
-    color: ${colors.dark};
+    color: ${colors.light};
     transition: all 0.1s ease-in-out;
     &:hover {
-      text-shadow: 0 0 1px ${colors.dark};
+      text-shadow: 0 0 1px black;
     }
   }
 `;

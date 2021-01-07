@@ -1,17 +1,15 @@
 import React from "react"
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import colors from '../styles/colors';
-import devices from '../styles/devices';
-import zindex from '../styles/zindex';
 
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+
+const NavLinkItem = styled(ScrollLink)``;
 
 export default function NavListItems() {
     return (
         <>
             <li>
-                <ScrollLink
+                <NavLinkItem
                     activeClass="active"
                     to="skills"
                     spy={true}
@@ -19,10 +17,10 @@ export default function NavListItems() {
                     smooth={true}
                 >
                     Skills
-                </ScrollLink>
+                </NavLinkItem>
             </li>
             <li>
-                <ScrollLink
+                <NavLinkItem
                     activeClass="active"
                     to="projects"
                     spy={true}
@@ -30,10 +28,10 @@ export default function NavListItems() {
                     smooth={true}
                 >
                     Projects
-                </ScrollLink>
+                </NavLinkItem>
             </li>
             <li>
-                <ScrollLink
+                <NavLinkItem
                     activeClass="active"
                     to="contact"
                     spy={true}
@@ -41,7 +39,7 @@ export default function NavListItems() {
                     smooth={true}
                 >
                     Contact
-                </ScrollLink>
+                </NavLinkItem>
             </li>
         </>
     )

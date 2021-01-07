@@ -9,7 +9,7 @@ const Wrapper = styled(motion.div)`
     /* position: absolute; */
     width: 50px;
     height: 50px;
-    transform: rotate(${props => props.rotation}deg);
+    transform: rotate(${props => props.initialRotation}deg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@ const Circle = styled(motion.div)`
     height: ${props => props.size}px;
     border-radius: 100%;
     border: ${props => props.border}px solid ${colors.dark};
-    box-shadow: 1px 2px 1px ${colors.black};
+    /* box-shadow: 0 0 5px ${colors.black}; */
     /* background: ${colors.dark} */
 `;
 const BlueCircle = styled(Circle)`
@@ -38,7 +38,7 @@ const GreenCircle = styled(Circle)`
 const InnerCircle = styled(Circle)`
     top: -3px;
     left: -3px;
-    background: linear-gradient(45deg, ${colors.green}, ${colors.blue});
+    background: linear-gradient(20deg, ${colors.green}, ${colors.blue});
     transform: translateX(${props => props.distance * 2}%);
     border: none;
 `;
@@ -56,6 +56,7 @@ export default function BlueGreenCircle(props) {
     return (
         <Wrapper
             animate={animation}
+            initialRotation={initialRotation}
         >
             <BlueCircle 
                 size={size}
