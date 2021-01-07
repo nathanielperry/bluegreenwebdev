@@ -27,12 +27,7 @@ const List = styled.ul`
 
 const OuterContainer = styled.div`
     position: relative;
-    width: 800px;
-    margin: auto;
 
-    @media ${devices.tablet} {
-        width: 750px; 
-    }
 `;
 
 const Container = styled.div`
@@ -54,11 +49,25 @@ const Container = styled.div`
     
     background: linear-gradient(${colors.light}, ${colors.lightgray}); 
 
+    @media ${devices.laptop} {
+        width: 330px;
+    }
+
     @media ${devices.tablet} {
-        width: 375px;
+        width: 300px;
     }
 
     @media ${devices.mobileL} {
+        width: 270px;
+        height: 250px;
+    }
+
+    @media ${devices.mobileM} {
+        width: 240px;
+        height: 250px;
+    }
+
+    @media ${devices.mobileS} {
         width: 200px;
         height: 225px;
         padding: 1rem 1rem 3rem;
@@ -103,8 +112,6 @@ export default function SkillsList({ xIntersect, yIntersect }) {
         name: edge.node.name,
         publicURL: edge.node.publicURL,
     }));
-
-    const isMobile = useMediaQuery({ query: devices.mobileL });
 
     // const aControls = useAnimation();
     const bControls = useAnimation();

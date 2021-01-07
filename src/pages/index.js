@@ -83,6 +83,9 @@ const IndexPage = () => {
   `)
 
   const isMobile = useMediaQuery({ query: devices.mobileL });
+  const skillListIntersects = {
+
+  }
 
   return (
     <>
@@ -100,8 +103,8 @@ const IndexPage = () => {
             <DarkSection slug="skills">
               <Subheader>I use <Highlight>modern</Highlight> tools...</Subheader>
               <SkillsList
-                xIntersect={isMobile ? 35 : 85}
-                yIntersect={isMobile ? 80 : 80}
+                xIntersect={isMobile ? 35 : 90}
+                yIntersect={isMobile ? 80 : 35}
               />
             </DarkSection>
             <Section slug="projects">

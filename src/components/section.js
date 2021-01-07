@@ -19,10 +19,11 @@ const Container = styled.section`
 `;
 
 const Inner = styled(motion.div)`
-    max-width: 800px;
+    max-width: 60%;
     margin: auto;
 
     @media ${devices.tablet} {
+        max-width: 400px;
         padding: 0 20px;
     }    
 `;
