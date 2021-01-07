@@ -7,15 +7,15 @@ import devices from '../styles/devices';
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    font-size: 1.2rem;
+    font-size: 1rem;
 
     a {
         color: ${colors.light};
     }
 
     img {
-        width: 256px;
-        height: 256px;
+        width: 192px;
+        height: 192px;
     }
 
     @media ${devices.tablet} {

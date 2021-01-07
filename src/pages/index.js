@@ -45,6 +45,7 @@ const Flex = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 4rem;
+  width: 95%;
 
   @media ${devices.tablet} {
     flex-direction: column;

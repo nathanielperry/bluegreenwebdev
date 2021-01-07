@@ -25,8 +25,7 @@ const Form = styled.form`
     }
 
     label {
-        display: inline-block;
-        width: 5rem;
+        width: 4rem;
         text-align: right;
     }
 
