@@ -6,7 +6,7 @@ import NavListItems from "./navlistitems";
 
 const navListVariants = {
     hidden: { opacity: 0, x: '100%' },
-    shown: { opacity: 1, x: '10%' },
+    shown: { opacity: 1, x: '15%' },
     hover: { x: '-10%' },
 }
 
