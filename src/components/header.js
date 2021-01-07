@@ -85,11 +85,7 @@ export default function Header({ siteTitle, isNavBarHidden }) {
           duration={300}
           smooth={true}
       >
-        <Logo 
-          size={35}
-          border={3}
-          distance={25}
-          initialRotation={-135}
+        <Logo
           rotation={scroll / 10 % 360}
         />
       </ScrollLink>
@@ -124,7 +120,6 @@ export default function Header({ siteTitle, isNavBarHidden }) {
           />
         </>
       }
-
       </Navbar>
     </header>
   )

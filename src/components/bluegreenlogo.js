@@ -5,11 +5,16 @@ import zindex from '../styles/zindex';
 
 import { motion, useAnimation } from 'framer-motion';
 
+const size = 35;
+const border = 3;
+const distance = 25;
+const initialRotation=-135;
+
 const Wrapper = styled(motion.div)`
     /* position: absolute; */
     width: 50px;
     height: 50px;
-    transform: rotate(${props => props.initialRotation}deg);
+    transform: rotate(${initialRotation}deg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,34 +22,34 @@ const Wrapper = styled(motion.div)`
 const Circle = styled(motion.div)`
     position: absolute;
     z-index: ${zindex.overlay};
-    width: ${props => props.size}px;
-    height: ${props => props.size}px;
+    width: ${size}px;
+    height: ${size}px;
     border-radius: 100%;
-    border: ${props => props.border}px solid ${colors.dark};
+    border: ${border}px solid ${colors.dark};
     /* box-shadow: 0 0 5px ${colors.black}; */
     /* background: ${colors.dark} */
 `;
 const BlueCircle = styled(Circle)`
     border-color: ${colors.blue};
     background: ${colors.blue};
-    transform: translateX(${props => props.distance}%);
+    transform: translateX(${distance}%);
 `;
 const GreenCircle = styled(Circle)`
     border-color: ${colors.green};
     background: ${colors.green};
     overflow: hidden;
-    transform: translateX(-${props => props.distance}%);
+    transform: translateX(-${distance}%);
 `;
 const InnerCircle = styled(Circle)`
     top: -3px;
     left: -3px;
     background: linear-gradient(20deg, ${colors.green}, ${colors.blue});
-    transform: translateX(${props => props.distance * 2}%);
+    transform: translateX(${distance * 2}%);
     border: none;
 `;
 
 export default function BlueGreenCircle(props) {
-    const { size, border, distance, initialRotation, rotation } = props;
+    const { size, border, distance, rotation } = props;
     const animation = useAnimation();
 
     React.useEffect(() => {
