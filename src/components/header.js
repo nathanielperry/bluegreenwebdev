@@ -43,6 +43,11 @@ const Navbar = styled(motion.nav)`
     text-decoration: none;
     color: ${colors.light};
     transition: all 0.1s ease-in-out;
+
+    @media ${devices.mobileL} {
+      color ${colors.dark}
+    }
+
     &:hover {
       text-shadow: 0 0 1px black;
     }
