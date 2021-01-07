@@ -77,7 +77,7 @@ export default function SocialMedia() {
             handle: "@BlueGreenWebDev",
             url: "https://twitter.com/BlueGreenWebDev",
         },
-    ]
+]
 
     return (
         <Container>
