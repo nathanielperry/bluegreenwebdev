@@ -18,7 +18,7 @@ const HamburgerDiv = styled.div`
   height: ${burgerSize}px;
   margin: ${(burgerContainer-burgerSize)/2};
   border: ${burgerBorderSize}px solid;
-  border-color: ${props => props.isHamburgerOpen ? colors.lightgray : colors.dark };
+  border-color: ${props => props.isHamburgerOpen ? colors.dark : colors.light };
   border-left: 0;
   border-right: 0;
 
@@ -30,7 +30,7 @@ const HamburgerDiv = styled.div`
     content: ' ';
     width: ${burgerSize}px;
     height: ${burgerBorderSize}px;
-    background: ${colors.dark};
+    background: ${colors.light};
     top: ${burgerSize / 2 - burgerBorderSize / 2 - burgerBorderSize}px;
     transform: ${props => props.isHamburgerOpen ? 'rotate(135deg)' : 'rotate(0)'};
     transition: all ${burgerAnimationDuration}s ease-in-out;
@@ -42,7 +42,7 @@ const HamburgerDiv = styled.div`
     content: ' ';
     width: ${burgerSize}px;
     height: ${burgerBorderSize}px;
-    background: ${colors.dark};
+    background: ${colors.light};
     top: ${burgerSize / 2 - burgerBorderSize / 2 - burgerBorderSize}px;
     transform: ${props => props.isHamburgerOpen ? 'rotate(-135deg)' : 'rotate(0)'};
     transition: all ${burgerAnimationDuration}s ease-in-out;
