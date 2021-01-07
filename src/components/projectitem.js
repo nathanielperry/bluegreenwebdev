@@ -116,8 +116,8 @@ export default function ProjectItem({ project }) {
                 <content>
                     <p>{ description }</p>
                     <Flex>
-                        <DemoLink href={ demoUrl }>Live Demo</DemoLink>
-                        <GitHubLink href={ githubUrl }>View on GitHub</GitHubLink>
+                        <DemoLink href={ demoUrl } target="_blank">Live Demo</DemoLink>
+                        <GitHubLink href={ githubUrl } target="_blank">View on GitHub</GitHubLink>
                     </Flex>
                 </content>
             </article>
