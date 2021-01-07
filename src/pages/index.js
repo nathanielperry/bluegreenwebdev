@@ -99,7 +99,10 @@ const IndexPage = () => {
           <>
             <DarkSection slug="skills">
               <Subheader>I use <Highlight>modern</Highlight> tools...</Subheader>
-              <SkillsList/>
+              <SkillsList
+                xIntersect={isMobile ? 35 : 85}
+                yIntersect={isMobile ? 80 : 80}
+              />
             </DarkSection>
             <Section slug="projects">
               <Subheader>...to make <Highlight>modern</Highlight> web apps.</Subheader>

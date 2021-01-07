@@ -6,7 +6,7 @@ import colors from '../styles/colors';
 import devices from '../styles/devices';
 import zindex from '../styles/zindex';
 import { useMediaQuery } from 'react-responsive';
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 
 import Logo from './bluegreenlogo';
 import MobileNavList from './mobilenavlist';

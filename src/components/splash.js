@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useStaticQuery, graphql } from 'gatsby';
 import colors from '../styles/colors';
 import devices from '../styles/devices';
 import zindex from '../styles/zindex';
+import { Link as ScrollLink } from "react-scroll";
 
 import BlueGreenCircle from './circle';
 import Dots from './dots';
@@ -28,9 +30,27 @@ const TextContainer = styled.div`
 const SplashTextLine = styled.p`
     width: 100%;
     padding: 0 6rem;
-
     @media ${devices.mobileL} {
         padding: 0 2rem;
+    }
+`;
+
+const ReplayLink = styled(ScrollLink)`
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    right: 0;
+    padding: 1rem 2rem;
+    color: black;
+    opacity: 0.4;
+    line-height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    img {
+        width: 3rem;
+        height: 3rem;
     }
 `;
 
@@ -59,10 +79,29 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     const [ isCircleShown, setIsCircleShown ] = React.useState(true);
     const [ isDotsShown, setIsDotsShown ] = React.useState(true);
 
-    const [ distance, setDistance ] = React.useState(200);
-    const [ distanceSpeed, setDistanceSpeed ] = React.useState(5);
+    const initialDistance = 200;
+    const initialDistanceSpeed = 5;
+    const initialSpinSpeed = 6;
+    const [ distance, setDistance ] = React.useState(initialDistance);
+    const [ distanceSpeed, setDistanceSpeed ] = React.useState(initialDistanceSpeed);
+    const [ spinSpeed, setSpinSpeed ] = React.useState(initialSpinSpeed);
+
     const [ splashTextList, setSplashTextList ] = React.useState([[]]);
-    const [ spinSpeed, setSpinSpeed ] = React.useState(6);
+
+    const data = useStaticQuery(graphql`
+        query RefreshIcon {
+            allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+                edges {
+                    node {
+                        name
+                        publicURL
+                    }
+                }
+            }
+        }
+    `);
+
+    const refreshIconUrl = data.allFile.edges[0].node.publicURL;
 
     const addSplashText = (text, isNewLine = false) => {
         //copy the text list to a temporary mutable rows array
@@ -123,6 +162,19 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
         setIsNavBarHidden(false);
     }
 
+    const replay = async () => {
+        setSplashTextList([[]]);
+        setDistanceAsync(initialDistance, initialDistanceSpeed);
+        setSpinSpeed(initialSpinSpeed);
+        setIsNavBarHidden(true);
+        setIsBackdropShown(false);
+        setIsCircleShown(true);
+        setIsDotsShown(true);
+        setIsAnimationComplete(false);
+        await timer(1);
+        sequenceQuick();
+    }
+
     React.useEffect(() => {
         if (localStorage.getItem("bgwd_animation-complete") === "yes") {
             sequenceQuick();
@@ -161,6 +213,19 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
                     ))
                 }
             </TextContainer>
+            {/* { isBackdropShown && 
+                <ReplayLink
+                    to="splashg"
+                    smooth={true}
+                    duration={300}
+                    onClick={replay}
+                >
+                    Replay
+                    <img 
+                        src={refreshIconUrl} 
+                    />
+                </ReplayLink>
+            }    */}
         </Section>
     )
 }

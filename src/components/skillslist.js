@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import colors from '../styles/colors';
 import devices from '../styles/devices';
+import { motion, useAnimation } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 
 import SkillIcon from './skillicon';
@@ -64,14 +65,11 @@ const Container = styled.div`
     }
 `;
 
-const offsetX = 85;
-const offsetY = 80;
-
 const ContainerA = styled(Container)`
 
 `;
 const ContainerB = styled(Container)`
-    transform: translate(${props => props.offsetX}%, ${props => props.offsetY}%);
+    transform: translate(${props => props.initialXIntersect}%, ${props => props.initialYIntersect}%);
     overflow: hidden;
     @media ${devices.mobileL} {
         padding: 3rem 1rem 1rem;
@@ -80,13 +78,13 @@ const ContainerB = styled(Container)`
 const InnerContainer = styled(Container)`
     top: -3px;
     left: -2px;
-    transform: translate(-${props => props.offsetX}%, -${props => props.offsetY}%);
+    transform: translate(-${props => props.initialXIntersect}%, -${props => props.initialYIntersect}%);
     background: linear-gradient(.85turn, ${colors.orange}, 25%, ${colors.light});
     box-shadow: none;
     border-color: ${colors.dark};
 `;
 
-export default function SkillsList() {
+export default function SkillsList({ xIntersect, yIntersect }) {
     const data = useStaticQuery(graphql`
         query IconsQuery {
             allFile(filter: { sourceInstanceName: { eq: "icons" } }) {
@@ -108,12 +106,36 @@ export default function SkillsList() {
 
     const isMobile = useMediaQuery({ query: devices.mobileL });
 
+    // const aControls = useAnimation();
+    const bControls = useAnimation();
+    const innerControls = useAnimation();
+
+    const moveContainers = async (xIntersect, yIntersect, timing) => {
+        const transition = { duration: timing };
+        // aControls.start({
+        //     x: xIntersect + '%',
+        //     y: yIntersect + '%',
+        //     transition,
+        // });
+        bControls.start({
+            x: xIntersect + '%',
+            y: yIntersect + '%',
+            transition,
+        });
+        innerControls.start({
+            x: -xIntersect + '%',
+            y: -yIntersect + '%',
+            transition,
+        });
+    };
+
+    React.useEffect(() => {
+        moveContainers(xIntersect, yIntersect, 200);
+    }, [xIntersect, yIntersect])
+
     return (
         <OuterContainer>
-            <ContainerA
-                offsetX={isMobile ? 50 : 85}
-                offsetY={isMobile ? 80 : 80}
-            >
+            <ContainerA>
                 <List>
                     {skills.slice(0, 6).map(skill => (
                         <li><SkillIcon skill={skill} /></li>
@@ -121,12 +143,14 @@ export default function SkillsList() {
                 </List>
             </ContainerA>
             <ContainerB
-                offsetX={isMobile ? 35 : 85}
-                offsetY={isMobile ? 80 : 80}
+                initialXIntersect={xIntersect}
+                initialYIntersect={yIntersect}
+                animate={bControls}
             >
                 <InnerContainer 
-                    offsetX={isMobile ? 35 : 85}
-                    offsetY={isMobile ? 80 : 80}
+                    initialXIntersect={xIntersect}
+                    initialYIntersect={yIntersect}
+                    animate={innerControls}
                 />
                 <List>
                     {skills.slice(6, 12).map(skill => (
