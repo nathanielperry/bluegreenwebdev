@@ -19,7 +19,7 @@ const Container = styled.section`
 `;
 
 const Inner = styled(motion.div)`
-    max-width: 60%;
+    max-width: 800px;
     margin: auto;
 
     @media ${devices.tablet} {

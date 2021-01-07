@@ -36,7 +36,7 @@ const Form = styled.form`
         padding-right: 4rem;
     }
     
-    @media ${devices.mobileM} {
+    @media ${devices.mobileL} {
         width: 100%;
         padding: 0;
         input, textarea {
@@ -67,7 +67,7 @@ const Submit = styled.button`
 
     text-shadow: 1px 1px 0 ${colors.dark};
 
-    @media ${devices.mobileM} {
+    @media ${devices.mobileL} {
         margin: 0;        
     }
 `;

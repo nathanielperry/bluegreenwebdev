@@ -27,7 +27,8 @@ const List = styled.ul`
 
 const OuterContainer = styled.div`
     position: relative;
-
+    width: 600px;
+    margin: auto;
 `;
 
 const Container = styled.div`
