@@ -54,6 +54,12 @@ const Form = styled.form`
     }
 `;
 
+const Honeypot = styled.div`
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+`;
+
 const Submit = styled.button`
     margin: 0;
     margin-left: 5rem;
@@ -73,7 +79,12 @@ const Submit = styled.button`
 
 export default function ContactForm() {
     return (
-        <Form name="contact" method="POST" data-netlify="true">
+        <Form 
+            name="contact"
+            method="POST"
+            netlify-honeypot="honey"
+            data-netlify="true"
+        >
             <div>
                 <label htmlFor="email">Email</label>
                 <input
@@ -98,6 +109,13 @@ export default function ContactForm() {
                     name="body"
                 />
             </div>
+            <Honeypot style={{ height: 0, opacity: 0, overflow: 'hidden', }}>
+                <label htmlFor="honey">Don't fill this part if you are human:</label>
+                <input
+                    id="honey"
+                    name="honey"
+                />
+            </Honeypot>
             <div>
                 <Submit>Send</Submit>
             </div>
