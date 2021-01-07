@@ -33,7 +33,7 @@ const OuterContainer = styled.div`
 
 const Container = styled.div`
     position: absolute;
-    top: 0;
+    top: 3rem;
     left: 0;
 
     width: 425px;
