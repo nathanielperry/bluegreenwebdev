@@ -81,7 +81,7 @@ export default function Header({ siteTitle, isNavBarHidden }) {
         variants={navVariants}
       >
       <ScrollLink 
-          to="splash"
+          to="intro"
           duration={300}
           smooth={true}
       >
@@ -95,7 +95,7 @@ export default function Header({ siteTitle, isNavBarHidden }) {
       { !isMobile &&
         <>
           <HomeLink 
-            to="splash"
+            to="intro"
             duration={300}
             smooth={true}
           >

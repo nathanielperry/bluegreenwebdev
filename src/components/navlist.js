@@ -10,13 +10,16 @@ const variants = {
     hover: { y: '-10%' },
 }
 
+const itemWidth = 6;
+
 const NavUl = styled(motion.ul)`
+    height: 100%;
     display: flex;
     justify-content: space-between;
     margin: 0;
     margin-left: auto;
     
-    width: 12rem;
+    width: ${itemWidth * 4}rem;
     padding: 0;
 
     list-style: none;
@@ -25,9 +28,28 @@ const NavUl = styled(motion.ul)`
       margin: 0;
       padding: 0;
     }
+
+    //Active Link Indication Slider
+    &::before, &::after {
+        content: '';
+        display: block;
+        position: absolute;
+    }
+
+    &::after {
+        width: ${itemWidth}rem;
+        top: 0;
+        bottom: 0;
+        left: ${props => props.activeChild * itemWidth}rem;
+        background: linear-gradient(45deg, ${colors.green}, ${colors.blue});
+        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+
+        transition: left 0.2s ease-in-out 0.18s;
+    }
 `; 
 
 export default function MobileNavList({ isNavBarHidden }) {
+    const [ activeChild, setActiveChild ] = React.useState(0);
 
     return (
         <NavUl
@@ -37,9 +59,12 @@ export default function MobileNavList({ isNavBarHidden }) {
             transition={{
                 staggerChildren: 0.15,
             }}
+            activeChild={activeChild}
         >
             <NavListItems
                 variants={variants}
+                itemWidth={itemWidth}
+                setActiveChild={(i) => setActiveChild(i)}
             />
         </NavUl>   
     )

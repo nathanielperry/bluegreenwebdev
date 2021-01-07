@@ -28,7 +28,7 @@ const Inner = styled(motion.div)`
     }    
 `;
 
-export default function Section({ slug, subheader, className, children }) {
+export default function Section({ slug, className, children }) {
     const [containerRef, inView] = useInView({
         threshold: 0.25,
         delay: 500,

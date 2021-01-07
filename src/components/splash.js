@@ -176,7 +176,7 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     }, []);
 
     return (
-        <Section id="splash">
+        <Section id="intro">
             { isBackdropShown && <Backdrop/> }
             { isCircleShown && 
                 <BlueGreenCircle
@@ -200,7 +200,7 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
             </TextContainer>
             { isBackdropShown && 
                 <ReplayLink
-                    to="splash"
+                    to="intro"
                     smooth={true}
                     duration={300}
                     onClick={replay}
