@@ -17,6 +17,7 @@ const HamburgerDiv = styled.div`
   width: ${burgerSize}px;
   height: ${burgerSize}px;
   margin: ${(burgerContainer-burgerSize)/2};
+  margin-left: auto;
   border: ${burgerBorderSize}px solid;
   border-color: ${props => props.isHamburgerOpen ? colors.dark : colors.light };
   border-left: 0;

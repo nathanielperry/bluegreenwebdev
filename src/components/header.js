@@ -14,18 +14,10 @@ import MobileNavList from './mobilenavlist';
 import NavList from './navlist';
 import Hamburger from './hamburger';
 
-const HomeLink = styled(ScrollLink)`
-  z-index: ${zindex.overlay + 100};
-  font-weight: bold;
-  font-size: 1.2rem;
-  text-shadow: 2px 2px 0 ${colors.dark};
-  color: ${colors.light};
-`;
-
 const Navbar = styled(motion.nav)`
   position: fixed;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   z-index: ${zindex.header};
 
@@ -52,6 +44,17 @@ const Navbar = styled(motion.nav)`
       text-shadow: 0 0 1px black;
     }
   }
+`;
+
+const HomeLink = styled(ScrollLink)`
+  z-index: ${zindex.overlay + 100};
+  padding-left: 2rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 0 ${colors.dark};
+  color: ${colors.light};
+  text-align: left;
+  justify-self: left;
 `;
 
 const navVariants = {
