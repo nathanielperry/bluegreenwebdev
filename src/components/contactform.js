@@ -72,14 +72,8 @@ const Submit = styled.button`
 `;
 
 export default function ContactForm() {
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // const formData = new FormData(e.target);
-        //TODO: Handle form submission here.
-    }
-
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form name="contact" method="POST" data-netlify="true">
             <div>
                 <label htmlFor="email">Email</label>
                 <input
