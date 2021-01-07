@@ -35,13 +35,10 @@ const Navbar = styled(motion.nav)`
     text-decoration: none;
     color: ${colors.light};
     transition: all 0.1s ease-in-out;
+    cursor: pointer;
 
     @media ${devices.mobileL} {
-      color ${colors.dark}
-    }
-
-    &:hover {
-      text-shadow: 0 0 1px black;
+      color: ${colors.dark};
     }
   }
 `;
@@ -108,7 +105,9 @@ export default function Header({ siteTitle, isNavBarHidden }) {
           >
               {siteTitle}
           </HomeLink>
-          <NavList />
+          <NavList 
+            isNavBarHidden={isNavBarHidden}
+          />
         </>
       }
 
@@ -121,6 +120,7 @@ export default function Header({ siteTitle, isNavBarHidden }) {
           />
           <MobileNavList
             isHamburgerOpen={isHamburgerOpen}
+            isNavBarHidden={isNavBarHidden}
           />
         </>
       }

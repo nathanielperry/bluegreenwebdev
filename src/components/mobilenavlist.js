@@ -7,6 +7,7 @@ import NavListItems from "./navlistitems";
 const navListVariants = {
     hidden: { opacity: 0, x: '100%' },
     shown: { opacity: 1, x: '0%' },
+    hover: { x: '-10%' },
 }
 
 const MobileNavUl = styled(motion.ul)`

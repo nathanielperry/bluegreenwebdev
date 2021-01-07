@@ -17,6 +17,7 @@ export default function NavListItems({ variants }) {
             {links.map(slug => (
                 <motion.li
                     variants={variants}
+                    whileHover="hover"
                 >
                     <NavLinkItem
                         activeClass="active"

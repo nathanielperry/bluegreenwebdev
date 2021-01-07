@@ -22,6 +22,7 @@ const HamburgerDiv = styled.div`
   border-color: ${props => props.isHamburgerOpen ? colors.dark : colors.light };
   border-left: 0;
   border-right: 0;
+  cursor: pointer;
 
   transition: all ${burgerAnimationDuration}s ease-in-out;  
 
