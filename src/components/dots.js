@@ -29,7 +29,7 @@ const animate = {
 const transition = (delay) => ({
     ease: "easeOut",
     duration: 0.7,
-    loop: Infinity,
+    repeat: Infinity,
     delay: delay,
 });
 
