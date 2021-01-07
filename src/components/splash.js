@@ -22,13 +22,14 @@ const Section = styled.section`
 `;
 
 const TextContainer = styled.div`
+    width: 100%;
     height: 50vh;
     z-index: ${zindex.overlay + 100};
     text-align: left;
 `;
 
 const SplashTextLine = styled.p`
-    width: 100%;
+    width: auto;
     padding: 0 6rem;
     @media ${devices.mobileL} {
         padding: 0 2rem;
@@ -39,18 +40,18 @@ const ReplayLink = styled(ScrollLink)`
     position: absolute;
     display: flex;
     bottom: 0;
-    right: 0;
-    padding: 1rem 2rem;
+    left: 0;
+    padding: 0rem 2rem;
     color: black;
     opacity: 0.4;
-    line-height: 3rem;
-    font-size: 2rem;
+    line-height: 1.8rem;
+    font-size: 1.4rem;
     font-weight: bold;
     cursor: pointer;
 
     img {
-        width: 3rem;
-        height: 3rem;
+        width: 1.8rem;
+        height: 1.8rem;
     }
 `;
 
@@ -86,7 +87,8 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     const [ distanceSpeed, setDistanceSpeed ] = React.useState(initialDistanceSpeed);
     const [ spinSpeed, setSpinSpeed ] = React.useState(initialSpinSpeed);
 
-    const [ splashTextList, setSplashTextList ] = React.useState([[]]);
+    const [ splashTextList, setSplashTextList ] = React.useState(new Array(1).fill([]));
+    const [ splashCount, setSplashCount ] = React.useState(0);
 
     const data = useStaticQuery(graphql`
         query RefreshIcon {
@@ -103,17 +105,8 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
 
     const refreshIconUrl = data.allFile.edges[0].node.publicURL;
 
-    const addSplashText = (text, isNewLine = false) => {
-        //copy the text list to a temporary mutable rows array
-        const rows = splashTextList.slice(0);
-        if (!isNewLine) {
-            //Add new text to end of last row.
-            rows[rows.length - 1].push(text);
-        } else {
-            //Add new row at end with text inside.
-            rows.push([text]);
-        }
-        setSplashTextList(rows);
+    const clearSplashText = () => {
+        setSplashCount(0);
     }
 
     const setDistanceAsync = (newDistance, newSpeed) => {
@@ -132,13 +125,13 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
 
     const sequence = async () => {
         await setDistanceAsync(50, 5.5);
-        addSplashText('Hello,');
+        setSplashCount(1);
         await setDistanceAsync(30, 2);
-        addSplashText('my name is Nathaniel.');
+        setSplashCount(2);
         await setSpinSpeed(0.5);
-        await setDistanceAsync(200, 0.5);
+        await setDistanceAsync(200, 0.8);
         await setDistanceAsync(0, 5);
-        addSplashText('I am a full stack web developer with a passion for design.', true);
+        setSplashCount(3);
         setIsBackdropShown(true);
         setIsCircleShown(false);
         setIsDotsShown(false);
@@ -156,23 +149,20 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
         await timer(0.955);
         setIsCircleShown(false);
         setIsBackdropShown(true);
-        addSplashText('Hello,');
-        addSplashText('my name is Nathaniel.');
-        addSplashText('I am a full stack web developer with a passion for design.', true);
+        setSplashCount(3);
         setIsNavBarHidden(false);
     }
 
     const replay = async () => {
-        setSplashTextList([[]]);
-        setDistanceAsync(initialDistance, initialDistanceSpeed);
+        setIsBackdropShown(false);
+        clearSplashText();
+        await setDistanceAsync(initialDistance, 0.1);
         setSpinSpeed(initialSpinSpeed);
         setIsNavBarHidden(true);
-        setIsBackdropShown(false);
         setIsCircleShown(true);
         setIsDotsShown(true);
         setIsAnimationComplete(false);
-        await timer(1);
-        sequenceQuick();
+        sequence();
     }
 
     React.useEffect(() => {
@@ -196,24 +186,17 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
                 />
             }
             <TextContainer>
-                {
-                    splashTextList.map((line, i) => (
-                        <SplashTextLine
-                        key={`line-${i}`}
-                        >
-                            { 
-                                line.map((text, j) => (
-                                    <>
-                                        <SplashText key={`st-${i}-${j}`}>{text}</SplashText>
-                                    </>
-                                ))
-                            }
-                            { isDotsShown && i === splashTextList.length -1 && <Dots/> }
-                        </SplashTextLine>
-                    ))
-                }
+                <SplashTextLine>
+                    {splashCount >= 1 && <SplashText>Hello,</SplashText>}
+                    {splashCount >= 2 && <SplashText>my name is Nathaniel.</SplashText>}
+                    {splashCount < 2 && <Dots />}
+                </SplashTextLine>
+                <SplashTextLine>
+                    {splashCount >= 3 && <SplashText>I am a full stack web developer with a passion for design.</SplashText>}
+                    {splashCount === 2 && <Dots />} 
+                </SplashTextLine>
             </TextContainer>
-            {/* { isBackdropShown && 
+            { isBackdropShown && 
                 <ReplayLink
                     to="splashg"
                     smooth={true}
@@ -225,7 +208,7 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
                         src={refreshIconUrl} 
                     />
                 </ReplayLink>
-            }    */}
+            }   
         </Section>
     )
 }
