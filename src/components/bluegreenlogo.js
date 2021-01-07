@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from '../styles/colors';
 import zindex from '../styles/zindex';
 
-import { motion, useAnimation, useMotionValue } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 
 const Wrapper = styled(motion.div)`
     /* position: absolute; */
@@ -13,7 +13,7 @@ const Wrapper = styled(motion.div)`
     display: flex;
     justify-content: center;
     align-items: center;
-    `;
+`;
 const Circle = styled(motion.div)`
     position: absolute;
     z-index: ${zindex.overlay};
@@ -22,14 +22,16 @@ const Circle = styled(motion.div)`
     border-radius: 100%;
     border: ${props => props.border}px solid ${colors.dark};
     box-shadow: 1px 2px 1px ${colors.black};
-    background: ${colors.dark}
+    /* background: ${colors.dark} */
 `;
 const BlueCircle = styled(Circle)`
     border-color: ${colors.blue};
+    background: ${colors.blue};
     transform: translateX(${props => props.distance}%);
 `;
 const GreenCircle = styled(Circle)`
     border-color: ${colors.green};
+    background: ${colors.green};
     overflow: hidden;
     transform: translateX(-${props => props.distance}%);
 `;
@@ -42,11 +44,18 @@ const InnerCircle = styled(Circle)`
 `;
 
 export default function BlueGreenCircle(props) {
-    const { size, border, distance, rotation } = props;
+    const { size, border, distance, initialRotation, rotation } = props;
+    const animation = useAnimation();
+
+    React.useEffect(() => {
+        animation.start({
+            rotate: initialRotation + rotation + 'deg',
+        });
+    }, [ rotation ]);
 
     return (
         <Wrapper
-            animate={{ rotate: rotation }}
+            animate={animation}
         >
             <BlueCircle 
                 size={size}

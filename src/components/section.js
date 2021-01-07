@@ -35,7 +35,7 @@ export default function Section({ slug, subheader, className, children }) {
     });
 
     const innerVariants = {
-        hidden: { opacity: 0, y: '150px' },
+        hidden: { opacity: 0, y: '50px' },
         shown: { opacity: 1, y: '0' },
     };
 
@@ -51,6 +51,7 @@ export default function Section({ slug, subheader, className, children }) {
                 animate={inView ? "shown" : "hidden"}
                 transition={{
                     duration: 0.8,
+                    ease: "easeOut",
                 }}
             >
                 { children }

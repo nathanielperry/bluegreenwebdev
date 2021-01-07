@@ -7,6 +7,7 @@ import devices from '../styles/devices';
 import zindex from '../styles/zindex';
 import { useMediaQuery } from 'react-responsive';
 import { Link as ScrollLink } from "react-scroll";
+import { throttle } from 'underscore';
 
 import Logo from './bluegreenlogo';
 import MobileNavList from './mobilenavlist';
@@ -54,7 +55,17 @@ const navVariants = {
 
 export default function Header({ siteTitle, isNavBarHidden }) {
   const [ isHamburgerOpen, setIsHamburgerOpen ] = React.useState(false);
+  const [ scroll, setScroll ] = React.useState();
   const isMobile = useMediaQuery({ query: devices.mobileL });
+
+  //Update scroll height on scroll.
+  React.useEffect(() => {
+    const handleScroll = throttle(() => {
+      setScroll(window.scrollY);
+    }, 100);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header>
@@ -72,7 +83,8 @@ export default function Header({ siteTitle, isNavBarHidden }) {
           size={35}
           border={3}
           distance={25}
-          rotation={-45}
+          initialRotation={-135}
+          rotation={scroll / 10 % 360}
         />
       </ScrollLink>
 
