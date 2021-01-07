@@ -35,10 +35,6 @@ const Navbar = styled(motion.nav)`
     color: ${colors.light};
     transition: all 0.1s ease-in-out;
     cursor: pointer;
-
-    @media ${devices.mobileL} {
-      color: ${colors.dark};
-    }
   }
 `;
 
