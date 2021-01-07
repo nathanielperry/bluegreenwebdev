@@ -86,7 +86,7 @@ export default function Header({ siteTitle, isNavBarHidden }) {
           smooth={true}
       >
         <Logo
-          rotation={scroll / 10 % 360}
+          rotation={scroll / 10}
         />
       </ScrollLink>
 

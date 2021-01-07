@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStaticQuery, graphql } from 'gatsby';
 import colors from '../styles/colors';
 import devices from '../styles/devices';
 import zindex from '../styles/zindex';
+import { motion } from 'framer-motion';
+import { useStaticQuery, graphql } from 'gatsby';
 import { Link as ScrollLink } from "react-scroll";
 
 import BlueGreenCircle from './circle';
@@ -36,12 +37,12 @@ const SplashTextLine = styled.p`
     }
 `;
 
-const ReplayLink = styled(ScrollLink)`
+const ReplayLink = styled(motion.a)`
     position: absolute;
     display: flex;
     bottom: 0;
     left: 0;
-    padding: 0rem 2rem;
+    padding: 0rem 1rem;
     color: black;
     opacity: 0.4;
     line-height: 1.8rem;
@@ -154,6 +155,7 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     }
 
     const replay = async () => {
+        await timer(0.4);
         setIsBackdropShown(false);
         clearSplashText();
         await setDistanceAsync(initialDistance, 0.1);
@@ -198,14 +200,25 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
             </TextContainer>
             { isBackdropShown && 
                 <ReplayLink
-                    to="splashg"
+                    to="splash"
                     smooth={true}
                     duration={300}
                     onClick={replay}
+                    initial="rest"
+                    animate="rest"
+                    whileHover="spin"
+                    variants={{
+                        rest: { opacity: 0.4 },
+                        spin: { opacity: 1 }
+                    }}
                 >
                     Replay
-                    <img 
-                        src={refreshIconUrl} 
+                    <motion.img 
+                        src={refreshIconUrl}
+                        variants={{
+                            rest: { rotate: 0 },
+                            spin: { rotate: 360 }
+                        }}
                     />
                 </ReplayLink>
             }   
