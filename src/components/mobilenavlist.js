@@ -2,8 +2,7 @@ import React from "react"
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import colors from '../styles/colors';
-import devices from '../styles/devices';
-import zindex from '../styles/zindex';
+import NavListItems from "./navlistitems";
 
 const navListVariants = {
     hidden: { opacity: 0, x: '100%' },
@@ -46,9 +45,9 @@ export default function MobileNavList({ isHamburgerOpen }) {
             transition={{
             staggerChildren: 0.15,
         }}>
-            <motion.li variants={navListVariants}><a href="#skills">Skills</a></motion.li>
-            <motion.li variants={navListVariants}><a href="#projects">Projects</a></motion.li>
-            <motion.li variants={navListVariants}><a href="#contact">Contact</a></motion.li>
+            <NavListItems
+                variants={navListVariants}
+            />
         </MobileNavUl>   
     )
 }

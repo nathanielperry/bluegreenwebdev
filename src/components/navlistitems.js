@@ -1,46 +1,34 @@
 import React from "react"
 import styled from 'styled-components';
-
+import { motion } from 'framer-motion';
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 const NavLinkItem = styled(ScrollLink)``;
 
-export default function NavListItems() {
+const links = [
+    'skills',
+    'projects',
+    'contact',
+];
+
+export default function NavListItems({ variants }) {
     return (
         <>
-            <li>
-                <NavLinkItem
-                    activeClass="active"
-                    to="skills"
-                    spy={true}
-                    duration={300}
-                    smooth={true}
+            {links.map(slug => (
+                <motion.li
+                    variants={variants}
                 >
-                    Skills
-                </NavLinkItem>
-            </li>
-            <li>
-                <NavLinkItem
-                    activeClass="active"
-                    to="projects"
-                    spy={true}
-                    duration={300}
-                    smooth={true}
-                >
-                    Projects
-                </NavLinkItem>
-            </li>
-            <li>
-                <NavLinkItem
-                    activeClass="active"
-                    to="contact"
-                    spy={true}
-                    duration={300}
-                    smooth={true}
-                >
-                    Contact
-                </NavLinkItem>
-            </li>
+                    <NavLinkItem
+                        activeClass="active"
+                        to={slug}
+                        spy={true}
+                        duration={300}
+                        smooth={true}
+                    >
+                        {slug.charAt(0).toUpperCase() + slug.slice(1)}
+                    </NavLinkItem>
+                </motion.li>
+            ))}
         </>
     )
 }
