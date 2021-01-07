@@ -113,13 +113,13 @@ export default function ProjectItem({ project }) {
             <h2>{ title }</h2>
             <article>
                 <img src={imageUrl} alt="project screenshot" />
-                <content>
+                <div>
                     <p>{ description }</p>
                     <Flex>
                         <DemoLink href={ demoUrl } target="_blank">Live Demo</DemoLink>
                         <GitHubLink href={ githubUrl } target="_blank">View on GitHub</GitHubLink>
                     </Flex>
-                </content>
+                </div>
             </article>
         </ProjectLi>
     )

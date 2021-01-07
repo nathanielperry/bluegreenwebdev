@@ -81,8 +81,8 @@ export default function SocialMedia() {
 
     return (
         <Container>
-            {socialMedia.map(media => (
-                <div>
+            {socialMedia.map((media, i) => (
+                <div key={'media-icon-' + i}>
                     <a href={media.url}><img src={media.icon} alt={media.name}/></a>
                     <Flex>
                         <p>{media.name} </p>

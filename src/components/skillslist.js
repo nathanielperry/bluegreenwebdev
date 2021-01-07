@@ -146,7 +146,7 @@ export default function SkillsList({ xIntersect, yIntersect }) {
             <ContainerA>
                 <List>
                     {skills.slice(0, 6).map(skill => (
-                        <li><SkillIcon skill={skill} /></li>
+                        <li key={skill.name}><SkillIcon skill={skill} /></li>
                     ))}
                 </List>
             </ContainerA>
@@ -162,7 +162,7 @@ export default function SkillsList({ xIntersect, yIntersect }) {
                 />
                 <List>
                     {skills.slice(6, 12).map(skill => (
-                        <li><SkillIcon skill={skill} /></li>
+                        <li key={skill.name}><SkillIcon skill={skill} /></li>
                     ))}
                 </List>
             </ContainerB>

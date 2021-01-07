@@ -32,6 +32,7 @@ export default function NavListItems({ variants, itemWidth, setActiveChild }) {
                     variants={variants}
                     itemWidth={itemWidth}
                     whileHover="hover"
+                    key={'nav-li-' + i}
                 >
                     <ScrollLink
                         activeClass="active"
@@ -40,6 +41,7 @@ export default function NavListItems({ variants, itemWidth, setActiveChild }) {
                         spy={true}
                         duration={300}
                         smooth={true}
+                        key={'nav-link' + i}
                     >
                         {slug.charAt(0).toUpperCase() + slug.slice(1)}
                     </ScrollLink>

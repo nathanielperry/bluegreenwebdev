@@ -65,7 +65,9 @@ export default function ProjectsList() {
         <List>
             { projects.map(project => (
                 <ProjectItem
-                    project={project}/>
+                    project={project}
+                    key={project.title}
+                />
             ))}
         </List>
     )
