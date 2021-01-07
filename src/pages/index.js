@@ -81,7 +81,7 @@ const IndexPage = () => {
         }
       }
     }
-  `)
+  `);
 
   const isMobile = useMediaQuery({ query: devices.mobileL });
 
