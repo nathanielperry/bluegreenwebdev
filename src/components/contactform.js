@@ -74,9 +74,12 @@ const Container = styled.div`
 `;
 
 export default function ContactForm() {
+    const formRef = React.useRef();
+
     return (
         <Container>
             <form
+                ref={formRef} //So Netlify sees the form html
                 name="Contact Form"
                 method="POST"
                 data-netlify="true"
