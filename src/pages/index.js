@@ -108,29 +108,29 @@ const IndexPage = () => {
           isAnimationComplete={isAnimationComplete}
           setIsAnimationComplete={setIsAnimationComplete}
         />
-        { isAnimationComplete && 
-          <>
-            <DarkSection slug="skills">
-              <Subheader>I use <Highlight>modern</Highlight> tools...</Subheader>
-              <SkillsList
-                xIntersect={isMobile ? 35 : 90}
-                yIntersect={isMobile ? 80 : 35}
-              />
-            </DarkSection>
-            <Section slug="projects">
-              <Subheader>...to make <Highlight>modern</Highlight> web apps.</Subheader>
-              <ProjectsList/>
-            </Section>
-            <DarkSection slug="contact">
-              <Subheader style={{ textAlign: isMobile ? 'left' : 'center' }}>Have an interesting project?</Subheader>
-              <Subheader style={{ textAlign: isMobile ? 'left' : 'center' }}> I would love to hear from you!</Subheader>
-              <Flex>
-                <ContactForm />
-                <SocialMedia />
-              </Flex>
-            </DarkSection>
-          </>
-        }
+        {/* Hides content during animation without removing from DOM. 
+            Needed so Netlify can detect the contact form during deploy. */}
+        <div style={{ display: isAnimationComplete ? 'block' : 'none' }}>
+          <DarkSection slug="skills">
+            <Subheader>I use <Highlight>modern</Highlight> tools...</Subheader>
+            <SkillsList
+              xIntersect={isMobile ? 35 : 90}
+              yIntersect={isMobile ? 80 : 35}
+            />
+          </DarkSection>
+          <Section slug="projects">
+            <Subheader>...to make <Highlight>modern</Highlight> web apps.</Subheader>
+            <ProjectsList/>
+          </Section>
+          <DarkSection slug="contact">
+            <Subheader style={{ textAlign: isMobile ? 'left' : 'center' }}>Have an interesting project?</Subheader>
+            <Subheader style={{ textAlign: isMobile ? 'left' : 'center' }}> I would love to hear from you!</Subheader>
+            <Flex>
+              <ContactForm />
+              <SocialMedia />
+            </Flex>
+          </DarkSection>
+        </div>
         </main>
         <Footer>
           © {new Date().getFullYear()} Nathaniel Perry
