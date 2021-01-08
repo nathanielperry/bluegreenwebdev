@@ -103,7 +103,7 @@ export default function Header({ siteTitle, isNavBarHidden }) {
       }
 
       {/* Mobile View */}
-      { isMobile && 
+      { isMobile === undefined || isMobile && 
         <>
           <Hamburger 
             isHamburgerOpen={isHamburgerOpen}
