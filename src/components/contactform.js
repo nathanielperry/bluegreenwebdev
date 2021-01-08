@@ -83,6 +83,7 @@ export default function ContactForm() {
                 name="Contact Form"
                 method="POST"
                 data-netlify="true"
+                action="/"
             >
                 <input name="form-name" value="Contact Form" type="hidden" />
                 <div>
