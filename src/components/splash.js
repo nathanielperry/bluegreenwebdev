@@ -122,13 +122,13 @@ export default function Splash({ setIsNavBarHidden, isAnimationComplete, setIsAn
     }
 
     const sequence = async () => {
-        await setDistanceAsync(50, 5.5);
+        await setDistanceAsync(50, 3.5);
         setSplashCount(1);
         await setDistanceAsync(30, 2);
         setSplashCount(2);
-        await setSpinSpeed(0.5);
-        await setDistanceAsync(200, 0.8);
-        await setDistanceAsync(0, 5);
+        await setSpinSpeed(0.8);
+        await setDistanceAsync(150, 2.5);
+        await setDistanceAsync(0, 3.5);
         setSplashCount(3);
         setIsBackdropShown(true);
         setIsCircleShown(false);
