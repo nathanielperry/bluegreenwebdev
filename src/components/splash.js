@@ -138,7 +138,6 @@ export default function Splash({ setIsNavBarHidden, isAnimationComplete, setIsAn
     };
 
     const sequenceQuick = async () => {
-        setIsAnimationComplete(true);
         setSpinSpeed(1);
         setDistanceAsync(0, 1);
         await timer(0.955);
@@ -146,6 +145,7 @@ export default function Splash({ setIsNavBarHidden, isAnimationComplete, setIsAn
         setIsBackdropShown(true);
         setSplashCount(3);
         setIsNavBarHidden(false);
+        setIsAnimationComplete(true);
     }
 
     const replay = async () => {
