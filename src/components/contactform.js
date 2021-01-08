@@ -79,13 +79,13 @@ export default function ContactForm() {
     return (
         <Container>
             <form
-                name="contact"
+                name="Contact Form"
                 method="POST"
                 netlify-honeypot="honey"
                 data-netlify="true"
                 enctype="application/x-www-form-urlencoded"
                 >
-                <input name="contact" value="Netlify" type="hidden" />
+                <input name="form-name" value="Contact Form" type="hidden" />
                 <div>
                     <label for="email">Email</label>
                     <input
