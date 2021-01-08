@@ -69,9 +69,27 @@ const Footer = styled.footer`
 
 const IndexPage = () => {
   const [ isNavBarHidden, setIsNavBarHidden ] = React.useState(true);
-  const [ isAnimationComplete, setIsAnimationComplete ] = React.useState(
-    localStorage.getItem("bgwd_animation-complete") === "yes" ? true : false
-  );
+  const [ isAnimationComplete, setIsAnimationComplete ] = React.useState(null);
+
+  //Setting and modifying local state in useEffect to avoid ssr errors in gatbsy build
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsAnimationComplete(
+        localStorage.getItem("bgwd_animation-complete") === "yes" ? true : false
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+  }, []);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (isAnimationComplete) {
+        localStorage.setItem("bgwd_animation-complete", "yes");
+      } else {
+        localStorage.clear();
+      }
+    }
+  }, [ isAnimationComplete ]);
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -95,7 +113,9 @@ const IndexPage = () => {
       <main>
         <Splash 
           setIsNavBarHidden={setIsNavBarHidden}
-          setIsAnimationComplete={setIsAnimationComplete}/>
+          isAnimationComplete={isAnimationComplete}
+          setIsAnimationComplete={setIsAnimationComplete}
+        />
         { isAnimationComplete && 
           <>
             <DarkSection slug="skills">

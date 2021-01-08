@@ -75,7 +75,7 @@ const Backdrop = styled.div`
     }
 `;
 
-export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
+export default function Splash({ setIsNavBarHidden, isAnimationComplete, setIsAnimationComplete }) {
     const [ isBackdropShown, setIsBackdropShown ] = React.useState(false);
     const [ isCircleShown, setIsCircleShown ] = React.useState(true);
 
@@ -135,7 +135,6 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
         await timer(1);
         setIsNavBarHidden(false);
         setIsAnimationComplete(true);
-        localStorage.setItem("bgwd_animation-complete", "yes");
     };
 
     const sequenceQuick = async () => {
@@ -162,7 +161,7 @@ export default function Splash({ setIsNavBarHidden, setIsAnimationComplete }) {
     }
 
     React.useEffect(() => {
-        if (localStorage.getItem("bgwd_animation-complete") === "yes") {
+        if (isAnimationComplete) {
             sequenceQuick();
         } else {
             sequence();
