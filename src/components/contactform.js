@@ -80,12 +80,12 @@ export default function ContactForm() {
         <Container>
             <form
                 ref={formRef} //So Netlify sees the form html
-                name="Contact Form"
-                method="POST"
+                name="contact"
+                method="post"
                 data-netlify="true"
                 action="/"
             >
-                <input name="form-name" value="Contact Form" type="hidden" />
+                <input type="hidden" name="form-name" value="contact" />
                 <div>
                     <label for="email">Email</label>
                     <input type="email" name="email" />
