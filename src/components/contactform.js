@@ -80,39 +80,19 @@ export default function ContactForm() {
                 name="Contact Form"
                 method="POST"
                 data-netlify="true"
-                netlify-honeypot="honey"
             >
                 <input name="form-name" value="Contact Form" type="hidden" />
                 <div>
                     <label for="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                    />
+                    <input type="email" name="email" />
                 </div>
                 <div>
                     <label for="subject">Subject</label>
-                    <input
-                        type="subject"
-                        id="subject"
-                        name="subject"
-                    />
+                    <input name="subject" />
                 </div>
                 <div>
                     <label for="body">Message</label>
-                    <textarea
-                        type="body"
-                        id="body"
-                        name="body"
-                    />
-                </div>
-                <div style={{ height: 0, opacity: 0, overflow: 'hidden', }}>
-                    <label for="honey">Don't fill this part if you are human:</label>
-                    <input
-                        id="honey"
-                        name="honey"
-                    />
+                    <textarea name="body" />
                 </div>
                 <div>
                     <button className="submit-button" type="submit">Send</button>
