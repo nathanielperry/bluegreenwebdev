@@ -117,7 +117,7 @@ export default function ContactForm() {
                 />
             </Honeypot>
             <div>
-                <Submit>Send</Submit>
+                <Submit type="submit">Send</Submit>
             </div>
         </Form>
     )
