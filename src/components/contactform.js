@@ -83,7 +83,7 @@ export default function ContactForm() {
             name="contact"
             method="POST"
             netlify-honeypot="honey"
-            data-netlify="true"
+            netlify
         >
             <div>
                 <label htmlFor="email">Email</label>
