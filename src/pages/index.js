@@ -69,24 +69,16 @@ const Footer = styled.footer`
 
 const IndexPage = () => {
   const [ isNavBarHidden, setIsNavBarHidden ] = React.useState(true);
-  const [ isAnimationComplete, setIsAnimationComplete ] = React.useState(null);
-
-  //Setting and modifying local state in useEffect to avoid ssr errors in gatbsy build
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsAnimationComplete(
-        localStorage.getItem("bgwd_animation-complete") === "yes" ? true : false
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps 
-  }, []);
+  const [ isAnimationComplete, setIsAnimationComplete ] = React.useState(
+    typeof window !== 'undefined' && window.localStorage.getItem("bgwd_animation-complete") === "yes" ? true : false
+  );
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       if (isAnimationComplete) {
-        localStorage.setItem("bgwd_animation-complete", "yes");
+        window.localStorage.setItem("bgwd_animation-complete", "yes");
       } else {
-        localStorage.clear();
+        window.localStorage.clear();
       }
     }
   }, [ isAnimationComplete ]);
