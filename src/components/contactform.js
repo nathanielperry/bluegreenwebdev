@@ -83,9 +83,14 @@ export default function ContactForm() {
                 name="contact"
                 method="post"
                 data-netlify="true"
+                netlify-honeypot="bot-field"
                 action="/"
             >
                 <input type="hidden" name="form-name" value="contact" />
+                <div style={{ opacity: 0, height: 0, overflow: 'hidden' }}>
+                    <label for="bot-field">Don't fill out if human:</label>
+                    <input name="bot-field" />
+                </div>
                 <div>
                     <label for="email">Email</label>
                     <input type="email" name="email" />
