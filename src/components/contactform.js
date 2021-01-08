@@ -85,6 +85,7 @@ export default function ContactForm() {
                 data-netlify="true"
                 enctype="application/x-www-form-urlencoded"
                 >
+                <input name="contact" value="Netlify" type="hidden" />
                 <div>
                     <label for="email">Email</label>
                     <input
