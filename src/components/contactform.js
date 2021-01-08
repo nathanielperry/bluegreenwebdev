@@ -30,6 +30,23 @@ const Container = styled.div`
             text-align: right;
         }
 
+        .submit-button {
+            margin: 0;
+            margin-left: 5rem;
+            padding: 0;
+            width: 100%;
+            border-radius: 12px;
+            border: none;
+            background-color: ${colors.blue};
+            color: ${colors.light};
+
+            text-shadow: 1px 1px 0 ${colors.dark};
+
+            @media ${devices.mobileL} {
+                margin: 0;        
+            }
+        }
+
         @media ${devices.tablet} {
             width: 100%;
             margin: auto;
@@ -56,35 +73,15 @@ const Container = styled.div`
     }
 `;
 
-const SubmitDiv = styled.div`
-    button {
-        margin: 0;
-        margin-left: 5rem;
-        padding: 0;
-        width: 100%;
-        border-radius: 12px;
-        border: none;
-        background-color: ${colors.blue};
-        color: ${colors.light};
-
-        text-shadow: 1px 1px 0 ${colors.dark};
-
-        @media ${devices.mobileL} {
-            margin: 0;        
-        }
-    }
-`;
-
 export default function ContactForm() {
     return (
         <Container>
             <form
                 name="Contact Form"
                 method="POST"
-                netlify-honeypot="honey"
                 data-netlify="true"
-                enctype="application/x-www-form-urlencoded"
-                >
+                netlify-honeypot="honey"
+            >
                 <input name="form-name" value="Contact Form" type="hidden" />
                 <div>
                     <label for="email">Email</label>
@@ -92,7 +89,7 @@ export default function ContactForm() {
                         type="email"
                         id="email"
                         name="email"
-                        />
+                    />
                 </div>
                 <div>
                     <label for="subject">Subject</label>
@@ -100,7 +97,7 @@ export default function ContactForm() {
                         type="subject"
                         id="subject"
                         name="subject"
-                        />
+                    />
                 </div>
                 <div>
                     <label for="body">Message</label>
@@ -108,18 +105,18 @@ export default function ContactForm() {
                         type="body"
                         id="body"
                         name="body"
-                        />
+                    />
                 </div>
                 <div style={{ height: 0, opacity: 0, overflow: 'hidden', }}>
                     <label for="honey">Don't fill this part if you are human:</label>
                     <input
                         id="honey"
                         name="honey"
-                        />
+                    />
                 </div>
-                <SubmitDiv>
-                    <button type="submit">Send</button>
-                </SubmitDiv>
+                <div>
+                    <button className="submit-button" type="submit">Send</button>
+                </div>
             </form>
         </Container>
     )
