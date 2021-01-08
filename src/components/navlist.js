@@ -29,6 +29,12 @@ const NavUl = styled(motion.ul)`
       padding: 0;
     }
 
+    a {
+        display: block;
+        height: 5rem;
+        line-height: 5rem;
+    }
+
     //Active Link Indication Slider
     &::before, &::after {
         content: '';
