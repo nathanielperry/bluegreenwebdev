@@ -52,25 +52,18 @@ const Container = styled.div`
     
     background: linear-gradient(${colors.light}, ${colors.lightgray}); 
 
+
     @media ${devices.laptop} {
-        width: 330px;
-    }
-
-    @media ${devices.tablet} {
-        width: 300px;
-    }
-
-    @media ${devices.mobileL} {
         width: 270px;
         height: 250px;
     }
 
-    @media ${devices.mobileM} {
+    @media ${devices.mobileL} {
         width: 240px;
         height: 250px;
     }
 
-    @media ${devices.mobileS} {
+    @media ${devices.mobileM} {
         width: 200px;
         height: 225px;
         padding: 1rem 1rem 3rem;

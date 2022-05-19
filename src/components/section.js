@@ -30,7 +30,7 @@ const Inner = styled(motion.div)`
 
 export default function Section({ slug, className, children }) {
     const [containerRef, inView] = useInView({
-        threshold: 0,
+        threshold: 0.4,
         triggerOnce: true,
     });
 

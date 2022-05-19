@@ -32,7 +32,6 @@ export default function NavListItems({ variants, itemWidth, setActiveChild }) {
                     variants={variants}
                     itemWidth={itemWidth}
                     whileHover="hover"
-                    key={'nav-li-' + i}
                 >
                     <ScrollLink
                         activeClass="active"
